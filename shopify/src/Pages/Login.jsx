@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
+import { motion } from 'motion/react';
+
 function Login() {
  const [name,setName]=useState("");
  const [password,setPassword]=useState("");
@@ -11,7 +13,27 @@ function Login() {
   }
 
   return (
-    <div className='relative   mt-[4%] left-[30%]'>
+    <motion.div
+    
+     drag dragConstraints={{
+         left:0,
+          right:400,
+          bottom:0,
+          top:100
+    }}
+    
+     whileDrag={{
+         scale:0.8
+     }}
+
+    
+       dragElastic={2}
+        dragTransition={{
+             bounceStiffness:5,
+          
+           
+        }}
+    className='relative   mt-[4%] left-[30%]'>
          <h1  className='text-4xl  ml-32 mb-4 font-mono text-[#27E0B3]'>Login </h1>
           <form className='flex flex-col gap-4  w-1/3 border text-black  border-gray-200 p-5' onSubmit={(e)=>{
    loggedin(e)
@@ -25,7 +47,7 @@ function Login() {
                <button className=' px-4 py-2 font-bold  bg-[#27E0B3]'>Login</button>
                <span className='text-center text-white'>If not any account <Link className=' underline decoration-blue-600 text-blue-600' to={'/Create'}>Create Account</Link></span>
           </form>
-    </div>
+    </motion.div>
   )
 }
 

@@ -1,3 +1,4 @@
+import { motion } from 'motion/react';
 import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom'
@@ -8,6 +9,7 @@ function Create() {
     const [no, setNo] = useState("");
     const [password, setPassword] = useState("");
 
+     
     const submitted = (e) => {
         e.preventDefault();
         setName("");
@@ -18,7 +20,25 @@ function Create() {
     }
 
 
-    return (<div className='relative  mt-[3%] left-[30%] '>
+    return (<motion.div className='relative  mt-[3%] left-[30%] ' drag dragConstraints={{
+         left:0,
+          right:400,
+          bottom:0,
+          top:100
+    }}
+    
+     whileDrag={{
+         scale:0.8
+     }}
+
+    
+       dragElastic={2}
+        dragTransition={{
+             bounceStiffness:5,
+          
+           
+        }}
+    >
         <h1 className='text-4xl mb-4 font-mono text-red-700'>Create Your Account</h1>
         <form onSubmit={(e) => {
             submitted(e);
@@ -39,7 +59,7 @@ function Create() {
             <span className='text-center text-white'>Already have an account <Link className=' underline decoration-blue-600 text-blue-600' to={'/Login'}>Login here</Link></span>
         </form>
 
-    </div>
+    </motion.div>
     )
 }
 
