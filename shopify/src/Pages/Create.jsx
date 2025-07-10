@@ -20,7 +20,7 @@ function Create() {
     }
 
 
-    return (<motion.div className='relative  mt-[3%] left-[30%] ' drag dragConstraints={{
+    return (<motion.div className='formcontainer relative  mt-[3%] left-[30%]' drag dragConstraints={{
          left:0,
           right:400,
           bottom:0,

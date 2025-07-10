@@ -33,8 +33,8 @@ function Login() {
           
            
         }}
-    className='relative   mt-[4%] left-[30%]'>
-         <h1  className='text-4xl  ml-32 mb-4 font-mono text-[#27E0B3]'>Login </h1>
+    className=' formcontainer relative   mt-[4%] left-[30%]'>
+         <h1  className='login text-4xl  ml-32 mb-4 font-mono text-[#27E0B3]'>Login </h1>
           <form className='flex flex-col gap-4  w-1/3 border text-black  border-gray-200 p-5' onSubmit={(e)=>{
    loggedin(e)
           }}>

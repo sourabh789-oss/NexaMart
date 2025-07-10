@@ -1,3 +1,184 @@
 @tailwind base;
+
 @tailwind components;
+
 @tailwind utilities;
+
+.Landingpage .wave {
+  display: inline-block;
+  animation: hyy 2s linear 0s infinite;
+  transform-origin: 70%,70%;
+}
+
+@keyframes hyy {
+  0% {
+    transform: rotate(0deg);
+  }
+  
+  10% {
+    transform: rotate(14deg);
+  }
+  
+  20% {
+    transform: rotate(-8deg);
+  }
+  
+  30% {
+    transform: rotate(14deg);
+  }
+  
+  40% {
+    transform: rotate(-4deg);
+  }
+  
+  50% {
+    transform: rotate(10deg);
+  }
+  
+  60% {
+    transform: rotate(0deg);
+  }
+  
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* for Responsive Navbar component */
+@media only screen and (max-width:426px) {
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .Navbar {
+    display: none;
+    position: fixed;
+    z-index: 4;
+    width: 100vw;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0rem;
+    bottom: 0rem;
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: all ease-in-out 0.2s;
+    /* left: -103%; */
+    /* left:0%*/
+  }
+  
+  p:first-child {
+    position: fixed;
+    left: 3%;
+    top: 2%;
+    z-index: 9;
+    visibility: visible;
+  }
+  
+  p:nth-child(2) {
+    visibility: hidden;
+    position: fixed;
+    left: 83%;
+    top: 2%;
+    z-index: 19;
+  }
+  
+  .Navbar .Logopart {
+    font-size: 8vw;
+    cursor: pointer;
+  }
+  
+  .Navbar input {
+    margin-bottom: 4rem;
+    width: 15rem;
+  }
+  
+  .pages {
+    flex-direction: column;
+    padding-top: 2rem;
+    margin-bottom: 4rem;
+  }
+}
+
+/* for landing page responsive */
+@media only screen and (max-width:426px) {
+  .Landingpage {
+    width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    margin-left: 1rem;
+    margin-top: 4rem;
+    row-gap: 3rem;
+  }
+  
+  .Landingpage h1 {
+    margin-left: -8px;
+    font-size: 10vw;
+  }
+  
+  .Landingpage h1 span {
+    margin-left: 10rem;
+  }
+  
+  .Landingpage h2 {
+    font-size: 7vw;
+    line-height: 1.3;
+  }
+  
+  .Landingpage p {
+    font-size: 4vw;
+    line-height: 1.4;
+  }
+  
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+/* for create account page */
+@media only screen and (max-width:426px) {
+  .formcontainer {
+    left: 15%;
+    margin-top: 11%;
+  }
+  
+  .formcontainer h1 {
+    font-size: 6vw;
+    margin-right: 18vw;
+    text-align: center;
+    color: skyblue;
+  }
+  
+  .login {
+    margin-left: -1rem;
+    font-size: 1.5rem;
+  }
+  
+  .formcontainer form {
+    width: 74vw;
+  }
+}
+
+/* for service part */
+@media only screen and (max-width:426px) {
+  
+  .serviceheading {
+    margin-left: 4rem;
+  }
+}
+
+/* for loader  */
+@media only screen and (max-width:426px) {
+  
+  .loading{
+     top:45%;
+     left:46%;
+  }
+}
+
+
