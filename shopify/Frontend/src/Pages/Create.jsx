@@ -45,16 +45,16 @@ function Create() {
         }} className='flex flex-col gap-4  w-1/3 border text-black  border-gray-200 p-5'>
             <input value={name} onChange={(e) => {
                 setName(e.target.value)
-            }} type="text" name="yourname" className='outline-none focus:border-[1.8px]  focus:border-blue-400 h-9 rounded-md' id="yourname" placeholder='Enter Your name' />
+            }} type="text" name="yourname" className='outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 placeholder:text-base  text-xl rounded-md' id="yourname" placeholder='Enter Your name' />
             <input value={email} onChange={(e) => {
                 setEmail(e.target.value)
-            }} type="email" name='youremail' className=' outline-none focus:border-[1.8px] focus:border-blue-400   h-9 rounded-md' id='youremail' placeholder='Enter Your email' />
+            }} type="email" name='youremail' className=' outline-none focus:border-[1.9px] focus:border-blue-500 placeholder:text-base  text-xl   h-9 rounded-md' id='youremail' placeholder='Enter Your email' />
             <input value={password} onChange={(e) => {
                 setPassword(e.target.value)
-            }} type="password" name='yourpassword' className=' focus:border-[1.8px] focus:border-blue-400  outline-none h-9 rounded-md' id='yourpassword' placeholder='Enter Your password' />
+            }} type="password" name='yourpassword' className=' focus:border-[1.9px] focus:border-blue-500  outline-none h-9 rounded-md placeholder:text-base  text-xl' id='yourpassword' placeholder='Enter Your password' />
             <input value={no} onChange={(e) => {
                 setNo(e.target.value);
-            }} type="number" name='yournumber' className='  focus:border-[1.8px]focus:border-blue-400  outline-none h-9 rounded-md ' id='yournumber' placeholder='Enter your number' />
+            }} type="number" name='yournumber' className='  focus:border-[1.9px] focus:border-blue-500  outline-none h-9 rounded-md  placeholder:text-base  text-xl' id='yournumber' placeholder='Enter your number' />
             <button className=' px-4 py-2 font-bold  bg-[#27E0B3]'>Create Account</button>
             <span className='text-center text-white'>Already have an account <Link className=' underline decoration-blue-600 text-blue-600' to={'/Login'}>Login here</Link></span>
         </form>

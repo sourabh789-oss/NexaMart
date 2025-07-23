@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom'
 import { motion } from 'motion/react';
 
 function Login() {
- const [name,setName]=useState("");
+ const [email,setEmail]=useState("");
  const [password,setPassword]=useState("");
 
-  function loggedin(e){
+  function loggedin(e){ 
  e.preventDefault();
    setName("");
    setPassword("");
@@ -38,12 +38,12 @@ function Login() {
           <form className='flex flex-col gap-4  w-1/3 border text-black  border-gray-200 p-5' onSubmit={(e)=>{
    loggedin(e)
           }}>
-            <input value={name} onChange={(e) => {
-                setName(e.target.value)
-            }} type="text" name="yourname" className='outline-none focus:border-[1.8px]  focus:border-blue-400 h-9 rounded-md' id="yourname" placeholder='Enter Your name' />
+            <input value={email} onChange={(e) => {
+                setEmail(e.target.value)
+            }} type="text" name="youremail" className='outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 rounded-md placeholder:text-base  text-xl  ' id="youremail" placeholder='Enter Your email' />
             <input value={password} onChange={(e) => {
                 setPassword(e.target.value)
-            }} type="password" name='yourpassword' className=' focus:border-[1.8px] focus:border-blue-400  outline-none h-9 rounded-md' id='yourpassword' placeholder='Enter Your password' />
+            }} type="password" name='yourpassword' className=' focus:border-[1.9px] focus:border-blue-500  outline-none h-9   placeholder:text-base  text-xl  rounded-md' id='yourpassword' placeholder='Enter Your password' />
                <button className=' px-4 py-2 font-bold  bg-[#27E0B3]'>Login</button>
                <span className='text-center text-white'>If not any account <Link className=' underline decoration-blue-600 text-blue-600' to={'/Create'}>Create Account</Link></span>
           </form>
