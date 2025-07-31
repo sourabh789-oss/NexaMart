@@ -4,6 +4,15 @@
 
 @tailwind utilities;
 
+html,body{
+   width:100%;
+   overflow-y: auto;
+}
+
+body::-webkit-scrollbar{
+   display: none;
+}
+
 .Landingpage .wave {
   display: inline-block;
   animation: hyy 2s linear 0s infinite;

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import Button from '../Component/Button';
 import { motion } from 'motion/react'
+import Footer from '../Component/Footer';
 function Landingpage() {
 
 
@@ -15,6 +16,16 @@ function Landingpage() {
             <p className='font-mono text-xl '>
                 Discover the latest trends in 🛍️ fashion, all in one place! From stylish men's and women's clothes </p>
             <Button />
+
+            <div className='mt-8 flex '>
+                <video className='w-screen h-auto  object-contain mr-3 ' autoPlay muted loop playsInline preload="metadata" >
+                    <source src="https://www.shutterstock.com/shutterstock/videos/1092222145/preview/stock-footage--k-fps-green-screen-animation-of-products-related-to-e-commerce-falling-wearing-belt-shoes.webm" />
+                </video>
+            </div>
+
+     <Footer/>
+            <hr className='h-1 text-white w-full '/>
+           <section className='text-center w-full mt-3 text-2xl '> All Rights Reserved </section>
         </div>
 
     )
