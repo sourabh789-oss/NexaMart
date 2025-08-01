@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
 import { motion } from 'motion/react';
-
+ import { useNavigate } from 'react-router-dom';
 function Login() {
  const [email,setEmail]=useState("");
  const [password,setPassword]=useState("");
+  const navigate=useNavigate();
+
+
+
 
   function loggedin(e){ 
  e.preventDefault();
@@ -14,7 +18,16 @@ function Login() {
 
   return (
     <motion.div
-    
+       animate={{
+         opacity:[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.9,1]
+       }}
+
+       transition={{
+         delay:0.1,
+         duration:1.4,
+          
+       }}
+
      drag dragConstraints={{
          left:0,
           right:400,
