@@ -26,7 +26,17 @@ function Create() {
           bottom:0,
           top:100
     }}
+
+      animate={{
+         opacity:[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.9,1]
+       }}
     
+       transition={{
+         delay:0.1,
+         duration:1.4,
+          
+       }}
+       
      whileDrag={{
          scale:0.8
      }}
