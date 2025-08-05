@@ -1,0 +1,40 @@
+  ..........For Shadcn ui component use 
+
+  stepI :----- on terminal write above line only then the automatic take input from terminal and created successfully four file in components  folder inside ui folder 
+
+   npx shadcn@latest init
+✔ Preflight checks.
+✔ Verifying framework. Found Vite.
+✔ Validating Tailwind CSS.
+✔ Validating import alias.
+√ Which style would you like to use? » New York (Recommended)
+? Which color would you like to use as the base color? » - Use arrow-keys. Return to submit.
+? Which color would you like to use as the base col
+√ Which color would you like to use as the base col
+or? » Gray
+✔ Writing components.json.
+✔ Checking registry.
+✔ Updating tailwind.config.js
+✔ Updating CSS variables in src\index.css
+✔ Installing dependencies.
+✔ Created 1 file:
+  - src\lib\utils.js
+
+Success! Project initialization completed.
+You may now add components.
+
+PS D:\ReactProject\shopify\Frontend>   npx shadcn@latest add "http://skiper-ui.com/registry/theme-toggle-button.json"
+✔ Checking registry.
+✔ Installing dependencies.
+✔ Created 4 files:
+  - src\components\ui\theme-toggle-button.jsx
+  - src\components\ui\theme-animations.js
+  - src\components\ui\theme-provider.jsx
+  - src\components\ui\button.jsx
+
+
+
+
+  step2: now just wrap your app.jsx with theme-provider.jsx component when we working with only react+vite not in nextjs for nextjs another step here 
+
+  step3: now you can use the component anywhere in your project 

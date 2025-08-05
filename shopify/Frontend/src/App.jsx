@@ -9,6 +9,8 @@ import Service from './Pages/Service'
 import Loader from './Component/Loader';
 // import useLocoScroll from './Scrollbehaviour/useLocoScroll';//our custom hooks but issue for not show scrollbar component and also product page not scroll properly so not use now  
 
+import { ThemeProvider } from './components/ui/theme-provider';
+
 
 const App = () => {
   
@@ -32,7 +34,8 @@ const App = () => {
     
   }
   
-  return (<div className='app min-h-screen' data-scroll-container>  
+  return ( <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+  <div className='app min-h-screen bg-white text-black  dark:bg-black dark:text-white transition-colors duration-300' data-scroll-container>  
       <Navbar/>
     <Routes>
       <Route path='/' element={<Landingpage />}></Route>
@@ -42,6 +45,7 @@ const App = () => {
       <Route path='/Service' element={<Service />}></Route>
     </Routes>
 </div>
+</ThemeProvider>
 
   )
 }
