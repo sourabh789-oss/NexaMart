@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import shopify from '../assets/shopify.png'
 import { IoCloseSharp } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
-
+ import ThemeToggleButton from '@/components/ui/theme-toggle-button';
 
 function Navbar() {
   const icon1 = useRef(null);
@@ -59,6 +59,9 @@ function Navbar() {
         <Link to={"/Product"} onClick={CloseNavbar} >  <h1 className=' cursor-pointer text-2xl text-green-800  transition-all hover:decoration-blue-600 hover:underline'>Product</h1></Link>
         <Link to={'/Service'} onClick={CloseNavbar} >  <h1 className='cursor-pointer text-2xl text-green-800  transition-all hover:decoration-blue-600   hover:underline'>Service</h1></Link>
         <Link to={'/Create'} onClick={CloseNavbar}  >   <h1 className='cursor-pointer text-xl'><button className=' px-4 py-2 text-white font-bold bg-blue-500 rounded-md'>Create Account</button></h1></Link>
+          <div>
+            <ThemeToggleButton/>
+          </div>
       </div>
 
     </div>
