@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Button from '../Component/Button';
 import { motion } from 'motion/react'
 import Footer from '../Component/Footer';
-import ThemeToggleButton from '@/components/ui/theme-toggle-button';
+
 function Landingpage() {
 
 
@@ -28,9 +28,7 @@ function Landingpage() {
             <hr className='h-1 text-white w-full ' />
             <section className='text-center w-full mt-3 text-2xl '> All Rights Reserved </section>
 
-            <div>
-                <ThemeToggleButton />
-            </div>
+          
         </div>
 
     )
