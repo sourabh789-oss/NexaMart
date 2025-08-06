@@ -20,7 +20,7 @@ function Create() {
     }
 
 
-    return (<motion.div className='formcontainer relative  mt-[3%] left-[30%]' drag dragConstraints={{
+    return (<motion.div className='formcontainer relative dark:text-white   mt-[3%] left-[30%]' drag dragConstraints={{
          left:0,
           right:400,
           bottom:0,
@@ -49,24 +49,24 @@ function Create() {
            
         }}
     >
-        <h1 className='text-4xl mb-4 font-mono text-red-700'>Create Your Account</h1>
+        <h1 className='text-4xl mb-4 font-mono  text-[#90e027] dark:text-red-700'>Create Your Account</h1>
         <form onSubmit={(e) => {
             submitted(e);
-        }} className='flex flex-col gap-4  w-1/3 border text-black  border-gray-200 p-5'>
+        }} className='flex flex-col gap-4  w-1/3 border border-[#e5e7eb] rounded-md  bg-[#f9f9f9] dark:bg-black text-black dark:text-white  dark:border-gray-200 p-5'>
             <input value={name} onChange={(e) => {
                 setName(e.target.value)
-            }} type="text" name="yourname" className='outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 placeholder:text-base  text-xl rounded-md' id="yourname" placeholder='Enter Your name' />
+            }} type="text" name="yourname" className=' border outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 placeholder:text-base  text-xl rounded-md' id="yourname" placeholder='Enter Your name' />
             <input value={email} onChange={(e) => {
                 setEmail(e.target.value)
-            }} type="email" name='youremail' className=' outline-none focus:border-[1.9px] focus:border-blue-500 placeholder:text-base  text-xl   h-9 rounded-md' id='youremail' placeholder='Enter Your email' />
+            }} type="email" name='youremail' className='border outline-none focus:border-[1.9px] focus:border-blue-500 placeholder:text-base  text-xl   h-9 rounded-md' id='youremail' placeholder='Enter Your email' />
             <input value={password} onChange={(e) => {
                 setPassword(e.target.value)
-            }} type="password" name='yourpassword' className=' focus:border-[1.9px] focus:border-blue-500  outline-none h-9 rounded-md placeholder:text-base  text-xl' id='yourpassword' placeholder='Enter Your password' />
+            }} type="password" name='yourpassword' className=' border  focus:border-[1.9px] focus:border-blue-500  outline-none h-9 rounded-md placeholder:text-base  text-xl' id='yourpassword' placeholder='Enter Your password' />
             <input value={no} onChange={(e) => {
                 setNo(e.target.value);
-            }} type="number" name='yournumber' className='  focus:border-[1.9px] focus:border-blue-500  outline-none h-9 rounded-md  placeholder:text-base  text-xl' id='yournumber' placeholder='Enter your number' />
+            }} type="number" name='yournumber' className='border  focus:border-[1.9px] focus:border-blue-500  outline-none h-9 rounded-md  placeholder:text-base  text-xl' id='yournumber' placeholder='Enter your number' />
             <button className=' px-4 py-2 font-bold  bg-[#27E0B3]'>Create Account</button>
-            <span className='text-center text-white'>Already have an account <Link className=' underline decoration-blue-600 text-blue-600' to={'/Login'}>Login here</Link></span>
+            <span className='text-center text-gray-400  dark:text-white'>Already have an account? <Link className=' underline decoration-blue-600 text-blue-600' to={'/Login'}>Login here</Link></span>
         </form>
 
     </motion.div>

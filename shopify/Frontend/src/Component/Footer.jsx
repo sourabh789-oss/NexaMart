@@ -70,8 +70,8 @@ function Footer() {
                     </div>
 
                 </div>
-                <input type="email" className='text-center -ml-5 w-[15rem] rounded  h-8  text-lg outline-none text-red-800 ' placeholder='eg124@gmail.com' />
-                <button className='-ml-5 px-4 py-2 rounded-md bg-transparent text-inherit  hover:bg-red-600 border border-white  hover:border-none 
+                <input type="email" className='text-center border  -ml-5 w-[15rem] rounded text-red-800  h-8 mb-2 text-lg outline-none dark:text-white ' placeholder='eg124@gmail.com' />
+                <button className='-ml-5 px-4 py-2 rounded-md bg-transparent text-inherit bg-gray-300  hover:bg-[#27E0B3] hover:text-white dark:text-black  dark:hover:bg-red-600 border dark:border-white  hover:border-none 
                 transition-transform '>Subscribe</button>
             </div>
 
@@ -99,62 +99,7 @@ function Footer() {
             }
 
 
-            {/* <div>
-                <h1 className='text-2xl text-[#2758e0] mb-4'>Customer Service</h1>
-
-                <div className='font-light text-gray-500 flex flex-col gap-2'>
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '> Order Tracking</li>
-
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Shipping & Delivery</li>
-
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Returns & Refunds</li>
-
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Payment Options</li>
-
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Help Center</li>
-                </div>
-            </div>
-
-            <div>
-                <h1 className='text-2xl text-[#2758e0] mb-4'>Information</h1>
-                <div className='font-light text-gray-500 flex flex-col gap-2'>
-                    <li className='list-none transition-all hover:text-gray-400 cursor-pointer hover:underline hover:decoration-slate-500 '> Privacy Policy </li>
-
-                    <li className='list-none  transition-all  cursor-pointer  hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Terms & conditions </li>
-
-                    <li className='list-none  transition-all  cursor-pointer  hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Cookie Policy </li>
-
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Sitemap </li>
-
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Help Center</li>
-                </div>
-            </div>
-
-            <div>
-                <h1 className='text-2xl text-[#2758e0] mb-4'>Company </h1>
-                <div className='font-light text-gray-500 flex flex-col gap-2'>
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '> About </li>
-
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Terms  </li>
-
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '> Policy </li>
-                </div>
-
-            </div>
-
-
-            <div>
-                <h1 className='text-2xl text-[#2758e0] mb-4'>Social</h1>
-                <div className='font-light text-gray-500 flex flex-col gap-2'>
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500  '>Instagram</li>
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Twitter</li>
-                    <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>Github</li>
-                </div>
-            </div>
-
- */
-
-            }
+            
 
 
 

@@ -35,7 +35,7 @@ const App = () => {
   }
   
   return ( <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-  <div className='app min-h-screen bg-white text-black  dark:bg-black dark:text-white transition-colors duration-300' data-scroll-container>  
+  <div className='app min-h-screen bg-[#f9fafb] text-black  dark:bg-black dark:text-white transition-colors duration-300' data-scroll-container>  
       <Navbar/>
     <Routes>
       <Route path='/' element={<Landingpage />}></Route>

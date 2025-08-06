@@ -52,7 +52,7 @@ function Navbar() {
       <Link to={'/'} onClick={CloseNavbar} > <h1 className='Logopart text-4xl  cursor-pointer text-[#27E0B3]'>Shopify <img className=' -ml-9 inline w-20  h-20 object-cover' src={shopify} alt="" /> </h1>
       </Link>
       <div>
-        <input type='search' autoFocus className='w-[20rem] rounded  h-8 outline-none text-red-800 ' placeholder='Search here...' />
+        <input type='search' autoFocus className='w-[20rem] border  bg-[#F9F9F9] dark:bg-[#3B3B3B] h-8 py-5 outline-none rounded-3xl pl-1  dark:text-white ' placeholder='Search here...' />
       </div>
 
       <div className='pages flex flex-row items-center gap-6 '>

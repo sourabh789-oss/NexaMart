@@ -14,7 +14,7 @@ function Service() {
           <li>❤ ️ Easy returns & customer-first support</li>
         </ul>
 
-         <div className='my-4 ml-9   text-gray-300'>we've got everything you need to look and feel your best.
+         <div className='my-4 ml-9 text-blue-900   dark:text-gray-300'>we've got everything you need to look and feel your best.
 Start exploring now and find your perfect look!<br/>
 Because fashion should be easy, fun, and affordable.
 
