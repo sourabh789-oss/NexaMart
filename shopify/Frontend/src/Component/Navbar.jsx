@@ -46,7 +46,7 @@ function Navbar() {
 
   return (<div>
 
-    <p ref={icon1} className="cursor-pointer sm:hidden" onClick={showNavbar} ><GiHamburgerMenu className='text-3xl' /></p>
+    <p ref={icon1} className="cursor-pointer sm:hidden dark:text-white" onClick={showNavbar} ><GiHamburgerMenu className='text-3xl' /></p>
     <p ref={icon2} onClick={CloseNavbar} className='relative   sm:hidden cursor-pointer'><IoCloseSharp className='text-4xl' /></p>
     <div ref={Navbarref} className='Navbar flex flex-row justify-between items-center p-4 font-mono  '>
       <Link to={'/'} onClick={CloseNavbar} > <h1 className='Logopart text-4xl  cursor-pointer text-[#27E0B3]'>Shopify <img className=' -ml-9 inline w-20  h-20 object-cover' src={shopify} alt="" /> </h1>
