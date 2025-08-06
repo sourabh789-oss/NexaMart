@@ -48,7 +48,7 @@ function Login() {
         }}
     className=' formcontainer relative   mt-[4%] left-[30%]'>
          <h1  className='login text-4xl  ml-32 mb-4 font-mono text-[#90e027] dark:text-[#27E0B3]'>Login </h1>
-          <form className='flex flex-col gap-4  w-1/3 border border-[#e5e7eb] rounded-md bg-[#f9f9f9] dark:bg-black dark:text-white  dark:border-gray-200 p-5' onSubmit={(e)=>{
+          <form className='flex flex-col gap-4  w-1/3 border-2  border-white/20  rounded-md backdrop-blur-md shadow-xl  bg-[#f9f9f9] dark:backdrop-blur-md dark:shadow-xl  dark:bg-white/5 dark:text-white  dark:border-white/10 p-5' onSubmit={(e)=>{
    loggedin(e)
           }}>
             <input value={email} onChange={(e) => {
@@ -56,7 +56,7 @@ function Login() {
             }} type="text" name="youremail" className=' border outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 rounded-md placeholder:text-base  text-xl  ' id="youremail" placeholder='Enter Your email' />
             <input value={password} onChange={(e) => {
                 setPassword(e.target.value)
-            }} type="password" name='yourpassword' className=' focus:border-[1.9px] focus:border-blue-500  outline-none h-9   placeholder:text-base  text-xl  rounded-md' id='yourpassword' placeholder='Enter Your password' />
+            }} type="password" name='yourpassword' className='border focus:border-[1.9px] focus:border-blue-500  outline-none h-9   placeholder:text-base  text-xl  rounded-md' id='yourpassword' placeholder='Enter Your password' />
                <button className='border px-4 py-2 font-bold  bg-[#27E0B3]'>Login</button>
                <span className='text-center text-gray-400  dark:text-white'>If not any account <Link className='ml-2 underline decoration-blue-600 text-blue-600' to={'/Create'}>Create Account</Link></span>
           </form>
