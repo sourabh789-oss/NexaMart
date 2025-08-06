@@ -43,7 +43,7 @@ function Product() {
   //issue in this component :- scrollbar nahi show ho raha ha scroll hone par and proper scroll nahi ho raha ha 
 
   // task give loader effect when we fetch the api syntax{ condition?(if true):(if false) }
-  return (<div className='min-h-screen'> {loader ? (
+  return (<div className='min-h-screen '> {loader ? (
     <Loader />
   ) : (<>
     <Scrollbar />
@@ -58,7 +58,10 @@ function Product() {
             <h1 className='text-xl font-bold font-sans'>{element.category.charAt(0).toUpperCase() + element.category.slice(1)}</h1>
             <p className='w-[15rem] h-10 overflow-auto cursor-move text-purple-400' >{element.description}</p>
             <h1 className='text-[#D4A373]'>Rating: {element.rating.rate}</h1>
+                <div className='flex justify-between gap-2 items-center'>
+                   <button className='px-3 py-2 rounded-3xl  bg-white border border-gray-200 border-solid  text-[#3d27e0] transition-all  hover:bg-[#3d27e0] hover:text-white'>Buy Now</button>
             <button className='px-4 py-2 rounded-3xl  bg-white border border-gray-200 border-solid  text-[#27E0B3] transition-all  hover:bg-[#27E0B3] hover:text-white'>Add to cart</button>
+            </div>
           </div>
 
         })
