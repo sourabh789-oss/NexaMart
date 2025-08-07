@@ -140,7 +140,7 @@ body::-webkit-scrollbar{
   }
   
   .Landingpage p {
-    font-size: 4vw;
+    font-size: 5vw;
     line-height: 1.4;
   }
   
@@ -175,10 +175,15 @@ body::-webkit-scrollbar{
 
 /* for service part */
 @media only screen and (max-width:426px) {
+  .service{
+     margin-top: 4rem;
+  }
   
   .serviceheading {
     margin-left: 4rem;
   }
+
+
 }
 
 /* for loader  */
@@ -188,7 +193,24 @@ body::-webkit-scrollbar{
      top:45%;
      left:46%;
   }
+
+  /* for footer  */
+   .bottom{
+     grid-template-columns: 2fr;
+     grid-template-rows: auto;
+     font-family:Arial, Helvetica, sans-serif;
+       gap: 3rem;
+        padding-bottom: 0;
+        margin-bottom: 0;
+   }
+
+   
+
+   
 }
+
+
+
 
 @layer base {
   :root {
