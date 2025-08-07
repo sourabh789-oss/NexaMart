@@ -3,7 +3,7 @@ import Button from '../Component/Button'
 
 function Service() {
   return (
-    <div className=' mt-4'>
+    <div className='service mt-4'>
     <h1 className='serviceheading text-3xl ml-4 text-[#27E0B3]'>Our Services</h1>
       
       <div className='my-4'>
