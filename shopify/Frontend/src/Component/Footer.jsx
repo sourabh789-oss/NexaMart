@@ -60,7 +60,7 @@ function Footer() {
 
 
     return (
-        <footer className=' grid grid-cols-5 gap-16 px-6 py-4 my-7 ml-2'>
+        <footer className='bottom grid grid-cols-5 gap-16 px-6 py-4 my-7 ml-2'>
             <div className='flex flex-col gap-3 mr-8 '>
                 <span className='text-[#27E0B3] text-3xl '
                 >Shopify</span>
@@ -77,19 +77,21 @@ function Footer() {
 
             {
                 arr.map((Element, index) => {
-                    return <div className='relative left-4'>
-                        <h1 className='text-2xl text-[#2758e0] mb-4'>{Element.heading}</h1>
+                    return <div className=' .info relative left-4'>
+                        <h1 className='hd text-2xl text-[#2758e0] mb-4'>{Element.heading}</h1>
 
-                        <div className='font-light text-gray-500 flex flex-col gap-2'>
+                        <div className=' font-light text-gray-500 flex flex-col gap-2'>
                             <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '> {Element.Info.info1}</li>
 
                             <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info2}</li>
 
                             <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info3}</li>
+                           
+                            {Element.Info.info4?
+                            <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info4}</li>:null}
 
-                            <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info4}</li>
-
-                            <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info5}</li>
+                            {Element.Info.info5?
+                            <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info5}</li>:null}
                         </div>
 
                     </div>
