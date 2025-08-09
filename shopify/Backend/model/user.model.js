@@ -42,6 +42,7 @@ const UserSchema = mongoose.Schema({
 
 })
 
+
 //this static method to generate the hashPassword 
 UserSchema.statics.hashPassword = async (password) => {
     return await bcrypt.hash(password, 10)//take two parameter in hash plain password and second saltRound and return krenga ek lambi  hash string (256bit)
