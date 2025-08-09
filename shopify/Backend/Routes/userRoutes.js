@@ -1,0 +1,25 @@
+const express=require('express')
+const router=express.Router();
+ const {body}=require('express-validator');//check the validate data from the incoming user 
+ const userController=require('../controllers/user_controller');
+
+
+router.post('/Register',[
+
+ body('email').isEmail().withMessage("Invalid Email"),
+
+  body('Phoneno').isLength({min:10}).withMessage('Phoneno must contan 10 digits'),
+
+  body('fullname.firstname').isLength({min:3}).withMessage("Firstname must be atleast 3 characters long")
+  ,
+  body('password').isLength({min:6}).withMessage("Password must be atleast 6 characters")
+
+
+    
+],
+  userController.registerUser
+)
+
+
+module.exports=router;//exports this our multiple routes by using router of express.Router 
+
