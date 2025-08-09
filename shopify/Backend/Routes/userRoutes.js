@@ -4,6 +4,7 @@ const router=express.Router();
  const userController=require('../controllers/user_controller');
 
 
+ //register endpoint 
 router.post('/Register',[
 
  body('email').isEmail().withMessage("Invalid Email"),
