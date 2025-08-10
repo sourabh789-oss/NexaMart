@@ -50,9 +50,11 @@ UserSchema.statics.hashPassword = async (password) => {
 
 
 //for compare encrypted password to decrypted password if same then return true else false 
-UserSchema.methods.comparePassword = async (password) => {
+UserSchema.methods.comparePassword = async function(password){
 
     return await bcrypt.compare(password, this.password);//takes two parameters to compare hash password to original  Password  if same then return true 
+
+    //note this is not work in the arrow function it gives the error undefined because it does not select the document  it works only in the normal anonymous function 
 }
 
 
