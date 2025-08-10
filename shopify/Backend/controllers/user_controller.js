@@ -45,4 +45,38 @@ module.exports.registerUser = async (req, res, next) => {
 }
 
 
+module.exports.loginUser = async (req, res, next) => {
+    //step1 check any error in input data 
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    //step2:now extract the data and verify email and password stored in database or not using findOne query and compare encrypted password with plain password 
+    const { email, password } = req.body;
+
+    const user = await userModel.findOne({ email }).select('+password');//check email and password both are present 
+
+    if (!user) {
+        return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+        return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    //step3:genrate the token and store in the cookies and return the response cookie and user 
+
+    const token = await user.generateAuthToken();
+
+    res.cookie('token', token);
+
+    res.status(200).json({ token, user })
+
+
+}
+
+
 
