@@ -21,6 +21,13 @@ router.post('/Register',[
   userController.registerUser
 )
 
+ router.post('/login',[
+   body('email').isEmail().withMessage("Invalid email"),
+   body('password').isLength({min:6}).withMessage("Password must contain atleast 6 charactes")
+ ],
+userController.loginUser)
+
+
 
 module.exports=router;//exports this our multiple routes by using router of express.Router 
 
