@@ -2,7 +2,7 @@ const express=require('express')
 const router=express.Router();
  const {body}=require('express-validator');//check the validate data from the incoming user 
  const userController=require('../controllers/user_controller');
-
+const middleware=require('../Middlewares/auth_middleware');
 
  //register endpoint 
 router.post('/Register',[
@@ -28,6 +28,9 @@ router.post('/Register',[
 userController.loginUser)
 
 
+ router.get('/profile',middleware.AuthUser,userController.userProfile);
+
+  router.get('/logout',middleware.AuthUser,userController.logoutUser);
 
 module.exports=router;//exports this our multiple routes by using router of express.Router 
 
