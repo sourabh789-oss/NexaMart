@@ -54,7 +54,17 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		keyframes: {
+        glow: {
+          '0%, 100%': { boxShadow: '0 0 20px rgba(255,255,255,0.8)' },
+          '50%': { boxShadow: '0 0 40px rgba(255,255,255,1)' },
+        },
+      },
+      animation: {
+        glow: 'glow 2s ease-in-out infinite',
+      },
+    
   	}
   },
   plugins: [require("tailwindcss-animate")],
