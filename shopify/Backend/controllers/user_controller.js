@@ -3,7 +3,7 @@
 const userModel = require('../model/user.model');
 const userService = require('../services/user_service');
 const { validationResult } = require('express-validator');//for automatically detect when something is wrong in  my code then it automatic detect the error and perform the action on user data 
-
+const blackListTokenModel = require('../model/Blacklist_tokenModel');
 module.exports.registerUser = async (req, res, next) => {
 
     //check first error in the user request 
@@ -77,6 +77,30 @@ module.exports.loginUser = async (req, res, next) => {
 
 
 }
+
+
+module.exports.userProfile = (req, res, next) => {
+    return res.status(200).json(req.user);//here user is actually user data object from database 
+}
+
+
+module.exports.logoutUser = async (req, res, next) => {
+    const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
+
+    if (!token) {
+        return res.status(400).json("Token not found")
+    }
+
+    await blackListTokenModel.create({ token });//now create the token in blackList token model database 
+
+    res.clearCookie(token);
+
+    return res.status(200).json({ message: "User Logged out successfully" });
+
+
+
+}
+
 
 
 
