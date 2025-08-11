@@ -4,8 +4,8 @@ import Button from '../Component/Button';
 import { motion } from 'motion/react'
 import Footer from '../Component/Footer';
 
-function Landingpage() {
 
+function Landingpage() {
 
 
     return (
@@ -17,6 +17,8 @@ function Landingpage() {
             <p className='font-mono text-xl '>
                 Discover the latest trends in 🛍️ fashion, all in one place! From stylish men's and women's clothes </p>
             <Button />
+
+           
 
             <div className='mt-12 flex '>
                 <video className='w-screen h-auto  object-contain mr-4 -ml-2 ' autoPlay muted loop playsInline preload="metadata" >
