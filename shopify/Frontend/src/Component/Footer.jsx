@@ -77,7 +77,7 @@ function Footer() {
 
             {
                 arr.map((Element, index) => {
-                    return <div className=' .info relative left-4'>
+                    return <div key={index} className=' .info relative left-4'>
                         <h1 className='hd text-2xl text-[#2758e0] mb-4'>{Element.heading}</h1>
 
                         <div className=' font-light text-gray-500 flex flex-col gap-2'>
