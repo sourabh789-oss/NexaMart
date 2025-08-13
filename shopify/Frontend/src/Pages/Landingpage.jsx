@@ -9,7 +9,6 @@ function Landingpage() {
 
 
     return (
-
         <div className='Landingpage mt-28 ml-7 flex flex-col items-start gap-3 '>
             <h1 className='text-5xl'><i className='wave'>👋</i> Welcome to <motion.span className='text-[#27E0B3]'
             >Shopify</motion.span></h1>
@@ -29,7 +28,6 @@ function Landingpage() {
             <Footer />
             <hr className='h-1 text-white w-full ' />
             <section className='text-center w-full mt-3 text-2xl '> All Rights Reserved </section>
-
           
         </div>
 
