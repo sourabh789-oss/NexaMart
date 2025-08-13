@@ -1,14 +1,22 @@
-import React, { useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import shopify from '../assets/shopify.png'
 import { IoCloseSharp } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
- import ThemeToggleButton from '@/components/ui/theme-toggle-button';
-
+import ThemeToggleButton from '@/components/ui/theme-toggle-button';
+import profilepng from '../assets/Profile.png'
+  import {ProfileData} from '../context/ProfileContext'
 function Navbar() {
+  
+
   const icon1 = useRef(null);
   const icon2 = useRef(null);
   const Navbarref = useRef(null);
+
+const {Accountcreate,isLoggedIn,firstname,lastname,email}=useContext(ProfileData);
+
+
+
 
   const showNavbar = () => {
 
@@ -58,10 +66,15 @@ function Navbar() {
       <div className='pages flex flex-row items-center gap-6 '>
         <Link to={"/Product"} onClick={CloseNavbar} >  <h1 className=' cursor-pointer text-2xl text-green-800  transition-all hover:decoration-blue-600 hover:underline'>Product</h1></Link>
         <Link to={'/Service'} onClick={CloseNavbar} >  <h1 className='cursor-pointer text-2xl text-green-800  transition-all hover:decoration-blue-600   hover:underline'>Service</h1></Link>
-        <Link to={'/Create'} onClick={CloseNavbar}  >   <h1 className='cursor-pointer text-xl'><button className=' px-4 py-2 text-white font-bold bg-blue-500 rounded-md'>Create Account</button></h1></Link>
-          <div>
-            <ThemeToggleButton/>
-          </div>
+
+        {(!Accountcreate || !isLoggedIn) ? <Link to={'/Create'} onClick={CloseNavbar}  >   <h1 className='cursor-pointer text-xl'><button className=' px-4 py-2 text-white font-bold bg-blue-500 rounded-md'>Create Account</button></h1></Link>
+          : <div className="profilecontainer  relative w-12 h-12 shadow-sm ">
+            <img title={`  ${firstname} ${lastname} ${email}`} src={profilepng} className='w-full h-full rounded-full' alt="" />
+          </div>}
+
+        <div>
+          <ThemeToggleButton />
+        </div>
       </div>
 
     </div>
