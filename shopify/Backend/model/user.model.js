@@ -59,7 +59,7 @@ UserSchema.methods.comparePassword = async function(password){
 
 
 //for genrateToken and also expires in 24h 
-UserSchema.methods.generateAuthToken = () => {
+UserSchema.methods.generateAuthToken = function(){
     const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, { expiresIn: '24h' });//token generate hoga through jsonwebToken ki sign method pass this parameter (_id,Secretkey,expireskitne time mein ho) 
 
     return token;
