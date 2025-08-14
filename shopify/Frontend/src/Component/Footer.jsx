@@ -71,7 +71,7 @@ function Footer() {
 
                 </div>
                 <input type="email" className='text-center border  -ml-5 w-[15rem] rounded text-red-800  h-8 mb-2 text-lg outline-none dark:text-white ' placeholder='eg124@gmail.com' />
-                <button className='-ml-5 px-4 py-2 rounded-md bg-transparent text-inherit bg-gray-300  hover:bg-[#27E0B3] hover:text-white dark:text-white  dark:hover:bg-red-600 border dark:border-white  hover:border-none 
+                <button className='-ml-5 px-4 py-2 rounded-md bg-transparent text-inherit bg-gray-300  hover:bg-[#27E0B3] hover:text-white dark:text-white  dark:hover:bg-red-600 border dark:border-white  
                 transition-transform '>Subscribe</button>
             </div>
 
