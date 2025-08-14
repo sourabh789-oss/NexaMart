@@ -2,11 +2,11 @@ import { motion } from 'motion/react';
 import React, { useContext, useState } from 'react';
 import { UserdataContext } from '../context/UserContext';
 import { Link, useNavigate } from 'react-router-dom'
-import {ProfileData} from '../context/ProfileContext'
+import { ProfileData } from '../context/ProfileContext'
 import axios from 'axios';
 
 function Create() {
-const navigate=useNavigate();
+    const navigate = useNavigate();
 
     const [Firstname, setFirstname] = useState("");
     const [Lastname, setLastname] = useState("");
@@ -18,45 +18,46 @@ const navigate=useNavigate();
 
     const { userdata, setuserdata } = useContext(UserdataContext);//extact our provider value from userContext userdata,setuserdata
 
-  const {setAccountcreate,setLoggedIn,setfirstname,setlastname,setemail}=useContext(ProfileData);
+    const { setToken } = useContext(ProfileData);
 
 
-    
+
     const submitted = async (e) => {
         e.preventDefault();
-          const UserData={
-              fullname:{
-                  firstname:Firstname,
-                  Lastname:Lastname 
-                },
-                email:email,
-                Phoneno:no,
-                password:password 
-                
-          }
 
-          setfirstname(Firstname),setlastname(Lastname),setemail(email)
+        const UserData = {
+            fullname: {
+                firstname: Firstname,
+                Lastname: Lastname
+            },
+            email: email,
+            Phoneno: no,
+            password: password
 
-          try{
-           const response =await axios.post(`${import.meta.env.VITE_BASE_URL}/user/Register`,UserData);
-               if(response.status===201){//means everything is ok 
-                   const data=response.data;
-                     
-                   //set the data in context api and token in our local storage 
-                    setuserdata(data.user);
-                     localStorage.setItem("token",data.token)
-                    setAccountcreate(true); 
-                     setLoggedIn(true);
-                     navigate('/');
-                     
-               }
+        }
 
-           }catch(error){
-             console.log(error);
-           }
-            
+
 
         // post request api call on backend with data UserData;
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/Register`, UserData);
+            if (response.status === 201) {//means everything is ok 
+                const data = response.data;
+
+                //set the data in context api and token in our local storage 
+                setuserdata(data.user);
+
+                setToken(data.token);
+
+                navigate('/');
+
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+
+
 
 
         setFirstname("");
@@ -104,11 +105,11 @@ const navigate=useNavigate();
             <div className='flex gap-3' >
                 <input value={Firstname} onChange={(e) => {
                     setFirstname(e.target.value)
-                }} type="text"  className=' border pl-2 w-3/4 outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 placeholder:text-base  text-xl rounded-md' placeholder='Firstname' />
+                }} type="text" className=' border pl-2 w-3/4 outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 placeholder:text-base  text-xl rounded-md' placeholder='Firstname' />
 
                 <input value={Lastname} onChange={(e) => {
                     setLastname(e.target.value)
-                }} type="text"  className='w-3/4 pl-2 border outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 placeholder:text-base  text-xl rounded-md' placeholder='Lastname' />
+                }} type="text" className='w-3/4 pl-2 border outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 placeholder:text-base  text-xl rounded-md' placeholder='Lastname' />
 
             </div>
 

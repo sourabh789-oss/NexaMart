@@ -17,7 +17,7 @@ function Landingpage() {
                 Discover the latest trends in 🛍️ fashion, all in one place! From stylish men's and women's clothes </p>
             <Button />
 
-           
+
 
             <div className='mt-12 flex '>
                 <video className='w-screen h-auto  object-contain mr-4 -ml-2 ' autoPlay muted loop playsInline preload="metadata" >
@@ -28,7 +28,7 @@ function Landingpage() {
             <Footer />
             <hr className='h-1 text-white w-full ' />
             <section className='text-center w-full mt-3 text-2xl '> All Rights Reserved </section>
-          
+
         </div>
 
     )

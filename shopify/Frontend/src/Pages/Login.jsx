@@ -1,18 +1,50 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {Link} from 'react-router-dom'
 import { motion } from 'motion/react';
  import { useNavigate } from 'react-router-dom';
+ import {UserdataContext} from '../context/UserContext'
+ import {ProfileData} from '../context/ProfileContext'
+ import axios from 'axios'
+
 function Login() {
+
  const [email,setEmail]=useState("");
  const [password,setPassword]=useState("");
+  const {userdata,setuserdata}=useContext(UserdataContext);
+
+    const {setAccountcreate,setToken,setLoggedIn,setfirstname,setlastname,setemail}=useContext(ProfileData);
   const navigate=useNavigate();
 
 
 
 
-  function loggedin(e){ 
+async  function loggedin(e){ 
  e.preventDefault();
-   setName("");
+
+ const user={
+   email:email,
+   password:password 
+ }
+
+  try{
+   const response= await axios.post(`${import.meta.env.VITE_BASE_URL}/user/login`,user);
+    if(response.status===200){
+          const data=response.data;
+          setToken(data.token)
+          setuserdata(data.user)
+          
+          setAccountcreate(true);
+          setLoggedIn(true);
+
+          navigate('/')
+    }
+
+}catch(error){
+  console.log(`${error.status,error.name}`);
+
+}
+
+   setEmail("");
    setPassword("");
   }
 
