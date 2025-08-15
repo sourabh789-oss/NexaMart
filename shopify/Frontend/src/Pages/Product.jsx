@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import Scrollbar from '../Component/Scrollbar';
 import Loader from '../Component/Loader';
 import useLocoScroll from '../Scrollbehaviour/useLocoScroll';
 function Product() {
@@ -46,7 +45,6 @@ function Product() {
   return (<div className='min-h-screen '> {loader ? (
     <Loader />
   ) : (<>
-    <Scrollbar />
     <h1 className='login text-4xl text-center pb-3  font-serif text-[#27E0B3]'>Our Products</h1>
     <div className="Products  text-black   flex flex-row justify-center items-center bg-[#FFFFFD] flex-wrap gap-4 w-full py-3 data-scroll-section ">
       {
