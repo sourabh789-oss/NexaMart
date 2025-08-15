@@ -53,15 +53,16 @@ function Navbar() {
     }, 200)
   }
 
-  return (<div>
+  return (<div className=' '>
 
     <p ref={icon1} className="cursor-pointer sm:hidden dark:text-white" onClick={showNavbar} ><GiHamburgerMenu className='text-3xl' /></p>
     <p ref={icon2} onClick={CloseNavbar} className='relative   sm:hidden cursor-pointer'><IoCloseSharp className='text-4xl' /></p>
+    
     <div ref={Navbarref} className='Navbar flex flex-row justify-between items-center p-4 font-mono  '>
       <Link to={'/'} onClick={CloseNavbar} > <h1 className='Logopart text-4xl  cursor-pointer text-[#27E0B3]'>Shopify <img className=' -ml-9 inline w-20  h-20 object-cover' src={shopify} alt="" /> </h1>
       </Link>
       <div>
-        <input type='search' autoFocus className='w-[20rem] border  bg-[#F9F9F9] dark:bg-[#3B3B3B] h-8 py-5 outline-none rounded-3xl pl-1  dark:text-white ' placeholder='Search here...' />
+        <input type='search' autoFocus className='w-[20rem] border border-gray-400  bg-[#F9F9F9] dark:bg-[#3B3B3B] h-8 py-5 outline-none rounded-3xl pl-1 text-lg  pr-2  dark:text-white ' placeholder='Search here...' />
       </div>
 
       <div className='pages flex flex-row items-center gap-6 '>
