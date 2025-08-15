@@ -10,7 +10,7 @@ const ProfileContext = ({ children }) => {
   const [lastname, setlastname] = useState("");
   const [email, setemail] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));//initally it starts from our localstorge present or not token if already present then show the profile 
-
+  const [MobileNo, setMobileNo] = useState(null);
 
   //this will rerender whenever our state will change when we create the account 
   useEffect(() => {
@@ -29,12 +29,15 @@ const ProfileContext = ({ children }) => {
             }
           }
           )
+
+          
           const data = response.data;
 
           if (response.status === 200) {
             setfirstname(data.fullname?.firstname || "");
             setlastname(data.fullname?.Lastname || "");
             setemail(data.email || "");
+            setMobileNo(data.Phoneno || "");
           }
 
         }
@@ -54,6 +57,7 @@ const ProfileContext = ({ children }) => {
       setfirstname("");
       setlastname("");
       setemail("");
+      setMobileNo("");
 
     }
 
@@ -62,7 +66,7 @@ const ProfileContext = ({ children }) => {
 
 
   return (
-    <ProfileData.Provider value={{ Accountcreate, setAccountcreate, isLoggedIn, setLoggedIn, firstname, setfirstname, lastname, setlastname, email, setemail, token, setToken }}>
+    <ProfileData.Provider value={{ Accountcreate, setAccountcreate,MobileNo,setMobileNo, isLoggedIn, setLoggedIn, firstname, setfirstname, lastname, setlastname, email, setemail, token, setToken }}>
       {children}
     </ProfileData.Provider>
   )
