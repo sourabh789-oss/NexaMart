@@ -36,7 +36,7 @@ const App = () => {
   }
   
   return ( <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-  <div className='app min-h-screen bg-[#f9fafb] text-black  dark:bg-black dark:text-white transition-colors duration-300' data-scroll-container>  
+  <div className='app min-h-screen overflow-x-hidden bg-[#f9fafb] text-black  dark:bg-black dark:text-white transition-colors duration-300' data-scroll-container>  
     <Scrollbar/>
       <Navbar/>
     <Routes>
