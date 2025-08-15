@@ -4,8 +4,10 @@ import shopify from '../assets/shopify.png'
 import { IoCloseSharp } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import ThemeToggleButton from '@/components/ui/theme-toggle-button';
-import profilepng from '../assets/Profile.png'
+
 import { ProfileData } from '../context/ProfileContext'
+import ProfileShow from './ProfileShow';
+import { motion } from 'framer-motion';
 function Navbar() {
 
 
@@ -13,12 +15,15 @@ function Navbar() {
   const icon2 = useRef(null);
   const Navbarref = useRef(null);
 
-  const { Accountcreate, setAccountcreate, isLoggedIn, setLoggedIn, firstname, lastname, email } = useContext(ProfileData);
+  //profile data related work here 
+  const { isLoggedIn, firstname, lastname, email, MobileNo } = useContext(ProfileData);
+  const [showProfile, setshowProfile] = useState(false);//initially we not show our profile until user clicks 
+
+ 
+  const [animateProps, setaAnimateProps] = useState(null);//for transition related animate 
 
 
-
-
-
+  //for navigation show on mobile devices
   const showNavbar = () => {
 
 
@@ -38,6 +43,25 @@ function Navbar() {
 
   }
 
+
+  const profilehandler = () => {
+
+   setshowProfile(prev=>!prev)//when we click again and again profile will show or disappear again repeat this process 
+   
+    setaAnimateProps({
+     
+      right: showProfile?"-26rem":"1rem",
+      top:"3rem",
+      transition: {
+        delay: 0,
+        duration: 0.5,
+        ease: 'anticipate'
+      }
+    })
+
+
+  };
+
   const CloseNavbar = () => {
 
 
@@ -53,11 +77,11 @@ function Navbar() {
     }, 200)
   }
 
-  return (<div className=' '>
+  return (<div>
 
     <p ref={icon1} className="cursor-pointer sm:hidden dark:text-white" onClick={showNavbar} ><GiHamburgerMenu className='text-3xl' /></p>
     <p ref={icon2} onClick={CloseNavbar} className='relative   sm:hidden cursor-pointer'><IoCloseSharp className='text-4xl' /></p>
-    
+
     <div ref={Navbarref} className='Navbar flex flex-row justify-between items-center p-4 font-mono  '>
       <Link to={'/'} onClick={CloseNavbar} > <h1 className='Logopart text-4xl  cursor-pointer text-[#27E0B3]'>Shopify <img className=' -ml-9 inline w-20  h-20 object-cover' src={shopify} alt="" /> </h1>
       </Link>
@@ -70,7 +94,24 @@ function Navbar() {
         <Link to={'/Service'} onClick={CloseNavbar} >  <h1 className='cursor-pointer text-2xl text-green-800  transition-all hover:decoration-blue-600   hover:underline'>Service</h1></Link>
 
         {(isLoggedIn || localStorage.getItem("token")) ? <div className="profilecontainer  relative w-12 h-12 shadow-sm ">
-          <img title={`  ${firstname} ${lastname} ${email}`} src={profilepng} className='w-full h-full rounded-full' alt="" />
+          <div className='flex flex-col'>
+
+            <img onClick={() => {
+              profilehandler();
+            }} title={`${email}`} src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/11.png" className='w-full h-full rounded-full cursor-pointer' alt="" />
+
+            <motion.div 
+            initial={{
+              right: "-26rem",
+              top: "3rem"
+            }} 
+            animate={animateProps}
+             className='absolute  rounded-md dark:border-none border  bg-[#F9F9F9]   dark:bg-gray-700 ' > <ProfileShow firstname={firstname} lastname={lastname} MobileNo={MobileNo} email={email} />
+            </motion.div>
+
+
+
+          </div>
         </div>
           : <Link to={'/Create'} onClick={CloseNavbar}  >   <h1 className='cursor-pointer text-xl'><button className=' px-4 py-2 text-white font-bold bg-blue-500 rounded-md'>Create Account</button></h1></Link>}
 
@@ -79,7 +120,9 @@ function Navbar() {
         </div>
       </div>
 
+
     </div>
+
   </div>
   )
 }
