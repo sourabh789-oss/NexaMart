@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
+import {useNavigate } from 'react-router-dom';
+import {ProfileData} from '../context/ProfileContext';
+
+const ProfileShow = ({ firstname, lastname, MobileNo, email,setshowProfile }) => {
 
 
-const ProfileShow = ({ firstname, lastname, MobileNo, email }) => {
-
+    const navigate=useNavigate();
+    const {setLoggedIn}=useContext(ProfileData);
     const logouthander = async () => {
+      //call our server profile endpoint 
+       try{
+      const response=await axios.get(`${import.meta.VITE_BASE_URL}/user/logout`);
       
-
+          if(response.status===200){
+              localStorage.removeItem("token");
+               setLoggedIn(false);
+                setshowProfile(true);//now next time when we logged in then initially not show the profile data only rounded img show 
+               navigate('/Login')
+          }
+       
+} catch(error){
+     console.log(error);
+}
 
 
     }

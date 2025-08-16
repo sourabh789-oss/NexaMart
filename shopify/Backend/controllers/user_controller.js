@@ -17,9 +17,9 @@ module.exports.registerUser = async (req, res, next) => {
     //extract this value from the user data body 
     const { fullname, Phoneno, email, password } = req.body;
 
-    const isUserAlreadyExist = await userModel.findOne({ email, Phoneno });//check if this both found in our database 
-
+    const isUserAlreadyExist = await userModel.findOne({ email});//only email will be unique if user have multiple email with same phone no then they can use it 
     if (isUserAlreadyExist) {//means this user is found already 
+       
         return res.status(400).json({ message: 'User already exists' });
 
     }

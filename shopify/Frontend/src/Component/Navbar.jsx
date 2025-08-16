@@ -50,7 +50,7 @@ function Navbar() {
    
     setaAnimateProps({
      
-      right: showProfile?"-26rem":"1rem",
+      right: showProfile?"-56rem":"1rem",
       top:"3rem",
       transition: {
         delay: 0,
@@ -102,11 +102,11 @@ function Navbar() {
 
             <motion.div 
             initial={{
-              right: "-26rem",
+              right: "-56rem",
               top: "3rem"
             }} 
             animate={animateProps}
-             className='absolute  rounded-md dark:border-none border  bg-[#F9F9F9]   dark:bg-gray-700 ' > <ProfileShow firstname={firstname} lastname={lastname} MobileNo={MobileNo} email={email} />
+             className='absolute  rounded-md dark:border-none border  bg-[#F9F9F9]   dark:bg-gray-700 ' > <ProfileShow setshowProfile={setshowProfile} firstname={firstname} lastname={lastname} MobileNo={MobileNo} email={email} />
             </motion.div>
 
 

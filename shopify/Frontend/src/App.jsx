@@ -8,6 +8,7 @@ import Product from './Pages/Product';
 import Service from './Pages/Service'
 import Loader from './Component/Loader';
 import Scrollbar from './Component/Scrollbar';
+import 'remixicon/fonts/remixicon.css'
 // import useLocoScroll from './Scrollbehaviour/useLocoScroll';//our custom hooks but issue for not show scrollbar component and also product page not scroll properly so not use now  
 
 import { ThemeProvider } from './components/ui/theme-provider';
