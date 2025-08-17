@@ -15,8 +15,8 @@ const ProfileShow = ({ firstname, lastname, MobileNo, email,setshowProfile }) =>
       
           if(response.status===200){
               localStorage.removeItem("token");
+              setshowProfile(false);//now next time when we logged in then initially not show the profile data only rounded img show 
                setLoggedIn(false);
-                setshowProfile(true);//now next time when we logged in then initially not show the profile data only rounded img show 
                navigate('/Login')
           }
        
