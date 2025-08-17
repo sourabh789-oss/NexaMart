@@ -48,19 +48,43 @@ function Navbar() {
 
    setshowProfile(prev=>!prev)//when we click again and again profile will show or disappear again repeat this process 
    
-    setaAnimateProps({
+    };
+    useEffect(()=>{//use useEffect to update the state properly when we logout and again logged in so initially not show the showProfile 
+
+  if(showProfile){
+ setaAnimateProps({
      
-      right: showProfile?"-56rem":"1rem",
+      right:"1rem",
       top:"3rem",
       transition: {
-        delay: 0,
+        duration: 0.5,
+        ease: 'anticipate'
+      }
+    })
+  }
+  else{
+
+ setaAnimateProps({
+     
+      right:"-56rem",
+      top:"3rem",
+      transition: {
         duration: 0.5,
         ease: 'anticipate'
       }
     })
 
 
-  };
+
+  }
+
+
+
+    },[showProfile])
+   
+
+
+ 
 
   const CloseNavbar = () => {
 
