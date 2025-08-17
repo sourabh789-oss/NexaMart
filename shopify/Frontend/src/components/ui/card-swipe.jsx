@@ -63,7 +63,7 @@ export const CardSwipe = ({
                 }}
                 effect={"cards"}
                 grabCursor={true}
-                loop={true}
+                loop={false}
                 slidesPerView={"auto"}
                 rewind={true}
                 cardsEffect={{
