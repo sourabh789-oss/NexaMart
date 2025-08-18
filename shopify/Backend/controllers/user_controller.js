@@ -4,6 +4,7 @@ const userModel = require('../model/user.model');
 const userService = require('../services/user_service');
 const { validationResult } = require('express-validator');//for automatically detect when something is wrong in  my code then it automatic detect the error and perform the action on user data 
 const blackListTokenModel = require('../model/Blacklist_tokenModel');
+const axios = require('axios');
 module.exports.registerUser = async (req, res, next) => {
 
     //check first error in the user request 
@@ -17,9 +18,9 @@ module.exports.registerUser = async (req, res, next) => {
     //extract this value from the user data body 
     const { fullname, Phoneno, email, password } = req.body;
 
-    const isUserAlreadyExist = await userModel.findOne({ email});//only email will be unique if user have multiple email with same phone no then they can use it 
+    const isUserAlreadyExist = await userModel.findOne({ email });//only email will be unique if user have multiple email with same phone no then they can use it 
     if (isUserAlreadyExist) {//means this user is found already 
-       
+
         return res.status(400).json({ message: 'User already exists' });
 
     }
@@ -57,7 +58,7 @@ module.exports.loginUser = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await userModel.findOne({ email }).select('+password');//check email and password both are present 
-
+    //   console.log(user);
     if (!user) {
         return res.status(401).json({ message: "Invalid email or password" });
     }
@@ -72,6 +73,42 @@ module.exports.loginUser = async (req, res, next) => {
     const token = await user.generateAuthToken();
 
     res.cookie('token', token);
+
+    //now send the message on that  User Mobile No 
+
+//      try{
+//     await axios.post(process.env.FAST2_API_URL, {
+
+//         route: "q",
+//         message: "You have successfully Logged in 🚀",
+//         language: "english",
+//         numbers: user.Phoneno,
+
+
+//     }, {
+//         headers: {
+//             authorization: process.env.FAST2_SMS_API_KEY,
+//             "Content-Type": "application/json"
+
+
+//         }
+
+
+
+
+//     })
+// }catch(error){
+//      if(error.response){
+//          console.log("Fast2 SMS error",error.response.data);
+//      }
+//      else{
+//   console.log("Axios error:",error.message);
+//      }
+     
+// }
+
+
+
 
     res.status(200).json({ token, user })
 
