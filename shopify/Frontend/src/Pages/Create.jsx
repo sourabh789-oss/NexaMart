@@ -125,7 +125,7 @@ function Create() {
                 setNo(e.target.value);
             }} type="number" name='yournumber' className='border  focus:border-[1.9px] focus:border-blue-500  outline-none h-9 rounded-md  placeholder:text-base  text-xl' id='yournumber' placeholder='Enter your number' />
 
-            <button className=' px-4 py-2 font-bold  bg-[#27E0B3]'>Create Account</button>
+            <button className=' px-4 py-2 font-bold  bg-[#27E0B3]'>Sign Up</button>
 
             <span className='text-center text-gray-400  dark:text-white'>Already have an account? <Link className=' underline decoration-blue-600 text-blue-600' to={'/Login'}>Login here</Link></span>
         </form>
