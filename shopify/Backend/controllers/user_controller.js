@@ -5,6 +5,7 @@ const userService = require('../services/user_service');
 const { validationResult } = require('express-validator');//for automatically detect when something is wrong in  my code then it automatic detect the error and perform the action on user data 
 const blackListTokenModel = require('../model/Blacklist_tokenModel');
 const axios = require('axios');
+
 module.exports.registerUser = async (req, res, next) => {
 
     //check first error in the user request 
