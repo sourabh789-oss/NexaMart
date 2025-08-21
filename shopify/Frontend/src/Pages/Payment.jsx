@@ -109,7 +109,7 @@ const Payment = () => {
 
 
 
-    return (<motion.div className=' flex   mt-[4%]  justify-center items-center   dark:bg-[#000000]px-4'
+    return (<motion.div className=' paynmentcontainer flex   mt-[4%]  justify-center items-center   dark:bg-[#000000]px-4'
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -122,7 +122,7 @@ const Payment = () => {
             <h2 className='text-[#27E0B3]'>Pay for :{product.title}</h2>
             <p className="mb-4">Amount: <span className="text-gray-600 dark:text-[#90e027]">${product.price}</span></p>
             <div className="rounded-xl border border-white/20   backdrop-blur-md p-3 mb-4" >
-                <CardElement
+                <CardElement className='card'
                     key={themeKey}
                     options={{
                         style: {
