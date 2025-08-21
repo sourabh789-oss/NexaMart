@@ -1,6 +1,6 @@
 import react, { useEffect, useState } from 'react';
 import Navbar from './Component/Navbar';
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Create from './Pages/Create';
 import Login from './Pages/Login';
 import Landingpage from './Pages/Landingpage';
@@ -9,17 +9,22 @@ import Service from './Pages/Service'
 import Loader from './Component/Loader';
 import Scrollbar from './Component/Scrollbar';
 import 'remixicon/fonts/remixicon.css'
+
 // import useLocoScroll from './Scrollbehaviour/useLocoScroll';//our custom hooks but issue for not show scrollbar component and also product page not scroll properly so not use now  
 
 import { ThemeProvider } from './components/ui/theme-provider';
 import UserProtectWrapper from './Pages/UserProtectWrapper';
+
+import StripeProvider from './Pages/StripeProvider';
+import Payment from './Pages/Payment';
+import { LocateOff } from 'lucide-react';
 
 
 const App = () => {
 
   //give loader when page load using useState and useEffect 
   const [loading, setLoading] = useState(true);
-
+const location=useLocation();
 
   // useLocoScroll(!loading);
   useEffect(() => {
@@ -37,17 +42,30 @@ const App = () => {
 
   }
 
+  const noscrollbarRoutes=['/payment']
+
+
+
+
+
   return (<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
     <div className='app min-h-screen overflow-x-hidden bg-[#f9fafb] text-black  dark:bg-black dark:text-white transition-colors duration-300' data-scroll-container>
-      <Scrollbar />
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<UserProtectWrapper><Landingpage /></UserProtectWrapper>}></Route>
-        <Route path='/Create' element={<Create />}></Route>
-        <Route path='/Login' element={<Login />}></Route>
-        <Route path='/Product' element={<UserProtectWrapper><Product /></UserProtectWrapper>}></Route>
-        <Route path='/Service' element={<Service />}></Route>
-      </Routes>
+      <div>
+        <Navbar />
+     { !(noscrollbarRoutes.includes(location.pathname)) && <Scrollbar />}
+        <Routes>
+          <Route path='/' element={<UserProtectWrapper><Landingpage /></UserProtectWrapper>}></Route>
+          <Route path='/Create' element={<Create />}></Route>
+          <Route path='/Login' element={<Login />}></Route>
+          <Route path='/Product' element={<UserProtectWrapper><StripeProvider><Product /></StripeProvider></UserProtectWrapper>}></Route>
+          <Route path='/Service' element={<Service />}></Route>
+          <Route path='/payment' element={<StripeProvider><Payment></Payment></StripeProvider>} />
+
+        </Routes>
+      </div>
+
+
+
     </div>
   </ThemeProvider>
 
