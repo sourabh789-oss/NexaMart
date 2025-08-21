@@ -58,17 +58,18 @@ const FAQ = () => {
   return (
     <div className='userqueries mt-5 text-center w-full box-border'>
       <h1 className='text-4xl pb-2 text-[#27E0B3]'>Frequently Asked Questions</h1>
-      <div>
+      <div className='faq'>
         {
           data.map((element, idx) => {
-            return <div key={idx} className='mx-52 mt-1 flex flex-col gap-1 w-2/3'>
+            return <div key={idx} className='faqcontainer mx-52 mt-1 flex flex-col gap-1 w-2/3'>
               <div onClick={() => toggleAnswer(idx)} className=' cursor-pointer flex items-center dark:bg-gray-800  dark:hover:bg-[#414141] bg-[#EEEFF0] hover:bg-[#d1d2d3] dark:text-[#ffff] justify-between px-7 py-4 '>
-                <h1 className='text-2xl '>{element.question}</h1>
+                <h1 className='faqQues text-2xl '>{element.question}</h1>
                 <i className={`text-3xl  ${openStates[idx] ? "ri-close-large-line" : "ri-add-large-line"
                   }`}></i>
               </div>
 
               <AnimatePresence>{openStates[idx] && (
+                 <div className='answercontainer'>
                 <motion.div key="content"
                   initial={{ opacity: 0, height: 0 }}//when add open
                   animate={{ opacity: 1, height: "auto" }}//when expand our height 
@@ -76,7 +77,7 @@ const FAQ = () => {
                   transition={{ duration: 0.35, ease: "easeInOut" }}
                   className=" dark:bg-gray-800 bg-[#EEEFF0] text-start px-6  ">
                   <p className='text-[1.3rem] px-2 py-4'> {element.answer} </p>
-                </motion.div>)}
+                </motion.div> </div>)}
               </AnimatePresence>
 
             </div>

@@ -147,6 +147,23 @@ body::-webkit-scrollbar{
   .btn {
     font-size: 1rem;
   }
+
+  .userqueries{
+    width: 100%;
+  }
+
+  .userqueries .faq{
+    position: relative;
+    right: 10rem;
+  }
+
+  .answercontainer{
+     position: relative;
+     top:3rem;
+  }
+
+
+
 }
 
 /* for create account page */
@@ -187,6 +204,26 @@ body::-webkit-scrollbar{
 
 }
 
+ 
+/* for payment page */
+
+ @media only screen and (max-width:426px){
+   .paynmentcontainer{
+     position: relative;
+        top: 4rem;
+        margin: 2rem 0.5rem;
+   }
+
+   .paynmentcontainer h2,p{
+     font-size: medium;
+   }
+
+  .paynmentcontainer .card{
+     display: flex;
+     flex-direction: column;
+   }
+ }
+
 /* for loader  */
 @media only screen and (max-width:426px) {
   
@@ -204,6 +241,8 @@ body::-webkit-scrollbar{
         padding-bottom: 0;
         margin-bottom: 0;
    }
+
+   
 
    
 
