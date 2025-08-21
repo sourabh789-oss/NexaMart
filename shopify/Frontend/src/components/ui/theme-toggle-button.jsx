@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 import { MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
 
 import { createAnimation } from "./theme-animations";
+import {ProfileData} from "../../context/ProfileContext";
+
+
 
 export default function ThemeToggleButton({
   variant = "circle-blur",
@@ -13,6 +16,8 @@ export default function ThemeToggleButton({
   url = ""
 }) {
   const { theme, setTheme } = useTheme()
+
+  const {setDark}=useContext(ProfileData);
 
   const styleId = "theme-transition-styles"
 
@@ -43,7 +48,12 @@ export default function ThemeToggleButton({
     if (typeof window === "undefined") return
 
     const switchTheme = () => {
-      setTheme(theme === "light" ? "dark" : "light")
+      const newTheme=theme === "light" ? "dark" : "light"
+      setTheme(newTheme)
+
+      setDark(newTheme==="dark")//means we are in dark mode or not so in lightmode 
+      
+
     }
 
     if (!document.startViewTransition) {
@@ -52,7 +62,7 @@ export default function ThemeToggleButton({
     }
 
     document.startViewTransition(switchTheme)
-  }, [theme, setTheme])
+  }, [theme, setTheme,setDark,variant,start,url,updateStyles])
 
   return (
     <Button
