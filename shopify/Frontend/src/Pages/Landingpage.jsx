@@ -27,7 +27,7 @@ function Landingpage() {
                 </video>
             </div>
 
-
+{/* issue on mobile responsive design on faq component */}
           <FAQ/>
            
 
