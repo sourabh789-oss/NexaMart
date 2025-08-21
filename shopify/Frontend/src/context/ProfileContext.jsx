@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import axios from 'axios';//for check profile checkpoint 
+import { useTheme } from 'next-themes';
 
 export const ProfileData = createContext();
 
@@ -11,6 +12,15 @@ const ProfileContext = ({ children }) => {
   const [email, setemail] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));//initally it starts from our localstorge present or not token if already present then show the profile 
   const [MobileNo, setMobileNo] = useState(null);
+  const [isdark, setDark] = useState(false);//intially we are in toggle mode 
+ const {theme,setTheme,resolvedTheme}=useTheme();
+
+ const [mounted,setmounted]=useState(false);
+
+ //wait until client side hydration 
+  useEffect(()=>{
+    setmounted(true);
+  },[])
 
   //this will rerender whenever our state will change when we create the account 
   useEffect(() => {
@@ -30,7 +40,7 @@ const ProfileContext = ({ children }) => {
           }
           )
 
-          
+
           const data = response.data;
 
           if (response.status === 200) {
@@ -65,8 +75,17 @@ const ProfileContext = ({ children }) => {
   }, [token])
 
 
+  //intially theme system default then toggle theme on user interaction 
+  useEffect(()=>{
+     if(mounted){
+   setDark((resolvedTheme ||theme)==="dark");
+
+   }
+  },[theme,resolvedTheme,mounted])
+
+
   return (
-    <ProfileData.Provider value={{ Accountcreate, setAccountcreate,MobileNo,setMobileNo, isLoggedIn, setLoggedIn, firstname, setfirstname, lastname, setlastname, email, setemail, token, setToken }}>
+    <ProfileData.Provider value={{ Accountcreate, setAccountcreate, MobileNo, setMobileNo, isLoggedIn, setLoggedIn, firstname, setfirstname, lastname, setlastname, email, setemail, token, setToken, isdark, setDark,setTheme,theme}}>
       {children}
     </ProfileData.Provider>
   )
