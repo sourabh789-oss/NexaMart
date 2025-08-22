@@ -35,7 +35,7 @@ function Service() {
           Because fashion should be easy, fun, and affordable.
 
         </div>
-        <div className='text-2xl ml-9 '>👉<Button className='text-white ' /></div>
+        <div className='text-2xl ml-9 mb-3 '>👉<Button className='text-white ' /></div>
       </div>
 
       <div className="w-full">
