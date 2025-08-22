@@ -148,21 +148,14 @@ body::-webkit-scrollbar{
     font-size: 1rem;
   }
 
+  
+
   .userqueries{
-    width: 100%;
+    display: none;
+   
   }
 
-  .userqueries .faq{
-    position: relative;
-    right: 10rem;
-  }
-
-  .answercontainer{
-     position: relative;
-     top:3rem;
-  }
-
-
+  
 
 }
 
