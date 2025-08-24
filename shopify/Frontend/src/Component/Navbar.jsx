@@ -19,7 +19,7 @@ function Navbar() {
   const { isLoggedIn, firstname, lastname, email, MobileNo } = useContext(ProfileData);
   const [showProfile, setshowProfile] = useState(false);//initially we not show our profile until user clicks 
 
- 
+
   const [animateProps, setaAnimateProps] = useState(null);//for transition related animate 
 
 
@@ -46,45 +46,45 @@ function Navbar() {
 
   const profilehandler = () => {
 
-   setshowProfile(prev=>!prev)//when we click again and again profile will show or disappear again repeat this process 
-   
-    };
-    useEffect(()=>{//use useEffect to update the state properly when we logout and again logged in so initially not show the showProfile 
+    setshowProfile(prev => !prev)//when we click again and again profile will show or disappear again repeat this process 
 
-  if(showProfile){
- setaAnimateProps({
-     
-      right:"1rem",
-      top:"3rem",
-      transition: {
-        duration: 0.5,
-        ease: 'anticipate'
-      }
-    })
-  }
-  else{
+  };
+  useEffect(() => {//use useEffect to update the state properly when we logout and again logged in so initially not show the showProfile 
 
- setaAnimateProps({
-     
-      right:"-56rem",
-      top:"3rem",
-      transition: {
-        duration: 0.5,
-        ease: 'anticipate'
-      }
-    })
+    if (showProfile) {
+      setaAnimateProps({
 
+        right: "1rem",
+        top: "3rem",
+        transition: {
+          duration: 0.5,
+          ease: 'anticipate'
+        }
+      })
+    }
+    else {
 
+      setaAnimateProps({
 
-  }
+        right: "-56rem",
+        top: "3rem",
+        transition: {
+          duration: 0.5,
+          ease: 'anticipate'
+        }
+      })
 
 
 
-    },[showProfile])
-   
+    }
 
 
- 
+
+  }, [showProfile])
+
+
+
+
 
   const CloseNavbar = () => {
 
@@ -124,13 +124,13 @@ function Navbar() {
               profilehandler();
             }} title={`${email}`} src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/11.png" className='w-full h-full rounded-full cursor-pointer' alt="" />
 
-            <motion.div 
-            initial={{
-              right: "-56rem",
-              top: "3rem"
-            }} 
-            animate={animateProps}
-             className='absolute  rounded-md dark:border-none border  bg-[#F9F9F9]   dark:bg-gray-700 ' > <ProfileShow setshowProfile={setshowProfile} firstname={firstname} lastname={lastname} MobileNo={MobileNo} email={email} />
+            <motion.div
+              initial={{
+                right: "-56rem",
+                top: "3rem"
+              }}
+              animate={animateProps}
+              className='absolute profilecontainer xl:right-[-56rem] md:top-12 right-0 top-20 rounded-md dark:border-none border  bg-[#F9F9F9]   dark:bg-gray-700 ' > <ProfileShow setshowProfile={setshowProfile} firstname={firstname} lastname={lastname} MobileNo={MobileNo} email={email} />
             </motion.div>
 
 

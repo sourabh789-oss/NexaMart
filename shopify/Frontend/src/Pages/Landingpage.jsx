@@ -63,8 +63,8 @@ function Landingpage() {
             
                 <h1 className='head text-4xl mt-16  mx-[28rem] mb-5 text-[#27E0B3]'>Our Partners</h1>
 
-                   <div className='  w-full overflow-hidden mb-1'>
-                <div className='cards  flex gap-4   w-max  py-2   animate-moveleft '>
+                   <div className=' cards w-full overflow-hidden mb-1'>
+                <div className='  flex gap-4   w-max  py-2   animate-moveleft '>
 
                     { images.map((element,idx)=>{
 
@@ -75,7 +75,7 @@ function Landingpage() {
 
                     { images.map((element,idx)=>{
 
-                      return  <img key={idx+"sourabh"} className='w-[14rem] h-[14rem] rounded-full border-none  shadow-[0_0_20px_rgba(255,255,255,1)] shadow-white ' src={element.src} alt="" />
+                      return  <img key={idx+"sourabh"} className=' partner w-[14rem] h-[14rem] rounded-full border-none  shadow-[0_0_20px_rgba(255,255,255,1)] shadow-white ' src={element.src} alt="" />
                     })
 
                     }
