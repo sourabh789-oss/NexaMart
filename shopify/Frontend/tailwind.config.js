@@ -1,3 +1,5 @@
+import { transform } from 'framer-motion';
+
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: ["class"],
@@ -60,9 +62,20 @@ export default {
           '0%, 100%': { boxShadow: '0 0 20px rgba(255,255,255,0.8)' },
           '50%': { boxShadow: '0 0 40px rgba(255,255,255,1)' },
         },
+		 moveleft:{
+
+			'0%':{
+             transform:'translateX(0)'
+			},
+			
+			'100%':{
+				transform:'translateX(-50%)'
+			}
+		 }
       },
       animation: {
         glow: 'glow 2s ease-in-out infinite',
+		moveleft:'moveleft 20s linear  infinite'
       },
     
   	}
