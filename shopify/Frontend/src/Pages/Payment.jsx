@@ -117,8 +117,8 @@ const Payment = () => {
     >
 
 
-        <form onSubmit={handleSubmit} className=' w-full max-w-md p-8 rounded-2xl shadow-2xl border border-white/20 bg-[#f9f9f9]  backdrop-blur-xl  dark:bg-white/5 dark:border-gray-700'>
-            <h1 className='text-3xl text-center  mb-4 font-thin text-[#90e027] dark:text-red-700'>Secure Payment</h1>
+        <form onSubmit={handleSubmit} className=' w-full max-w-md p-8 rounded-2xl shadow-2xl border border-white/20 bg-[#f9f9f9]  backdrop-blur-xl  dark:bg-gradient-to-r from-stone-500 to-stone-700 dark:border-gray-700'>
+            <h1 className='text-3xl text-center  mb-4 font-thin text-[#90e027] '>Secure Payment</h1>
             <h2 className='text-[#27E0B3]'>Pay for :{product.title}</h2>
             <p className="mb-4">Amount: <span className="text-gray-600 dark:text-[#90e027]">${product.price}</span></p>
             <div className="rounded-xl border border-white/20   backdrop-blur-md p-3 mb-4" >
