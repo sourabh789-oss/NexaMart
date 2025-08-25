@@ -89,9 +89,9 @@ async  function loggedin(e){
             }} type="text" name="youremail" className=' border outline-none focus:border-[1.9px]  focus:border-blue-500 h-9 rounded-md placeholder:text-base  text-xl  ' id="youremail" placeholder='Enter Your email' />
             <input value={password} onChange={(e) => {
                 setPassword(e.target.value)
-            }} type="password" name='yourpassword' className='border focus:border-[1.9px] focus:border-blue-500  outline-none h-9   placeholder:text-base  text-xl  rounded-md' id='yourpassword' placeholder='Enter Your password' />
+            }} type="password" name='yourpassword' className='border focus:border-[1.9px] focus:border-blue-500  outline-none h-9   placeholder:text-base  md:text-xl  rounded-md' id='yourpassword' placeholder='Enter Your password' />
 
-              <a href='https://password-manager-modified.onrender.com' className='ml-32 text-sm font-medium dark:text-[#27E0B3] transition-all hover:underline hover:decoration-slate-600' target='blank' >Save Your password Securely here</a>
+              <a href='https://password-manager-modified.onrender.com' className='md:ml-32 text-xs md:text-sm font-medium dark:text-[#27E0B3] transition-all hover:underline hover:decoration-blue-600' target='blank' >Save Your password Securely here</a>
                <button className='border px-4 py-2 font-bold  bg-[#27E0B3]'>Login</button>
                <span className='text-center text-gray-400  dark:text-white'>If not any account <Link className='ml-2 underline decoration-blue-600 text-blue-600' to={'/Create'}>Create Account</Link></span>
           </form>
