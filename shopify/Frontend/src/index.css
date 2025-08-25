@@ -67,6 +67,7 @@ body::-webkit-scrollbar {
     z-index: 4;
     width: 100vw;
     min-height: 100vh;
+    overflow-y: auto;
     flex-direction: column;
     justify-content: space-around;
     padding: 0rem;
@@ -75,6 +76,11 @@ body::-webkit-scrollbar {
     background-repeat: no-repeat;
     background-attachment: fixed;
     transition: all ease-in-out 0.2s;
+    overflow-x: hidden;
+  }
+
+  .Navbar::-webkit-scrollbar{
+    display: none;
   }
   
   p:first-child {
@@ -175,7 +181,7 @@ body::-webkit-scrollbar {
 @media only screen and (max-width:426px) {
   .formcontainer {
     left: 15%;
-    margin-top: 30%;
+    margin-top: 28%;
   }
   
   .formcontainer h1 {
@@ -192,6 +198,9 @@ body::-webkit-scrollbar {
   
   .formcontainer form {
     width: 74vw;
+  }
+  .formcontainer input{
+     font-size:medium;
   }
 }
 
