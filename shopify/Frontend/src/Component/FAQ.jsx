@@ -11,8 +11,8 @@ const FAQ = () => {
   const data = [
     {
 
-      question: "What is Shopify",
-      answer: "Shopify is an Ecommerce Website where users buy product via online"
+      question: "What is NexaMart",
+      answer: "NexaMart is an Ecommerce Website where users buy product via online"
 
 
     },
@@ -22,7 +22,7 @@ const FAQ = () => {
     },
    {
     question: "What payment methods do you accept?",
-    answer: "We accept credit/debit cards, UPI, net banking, and popular wallets like Paytm, PhonePe, and Google Pay."
+    answer: "We accept credit/debit cards. Currently working to connect with phonepe and Paytm option also"
   },
     {
     question: "Are my payment details secure?",
@@ -32,6 +32,13 @@ const FAQ = () => {
 
       question: "Can I create more than 1 account",
       answer: "Yes You can created more than 1 account but with different email"
+
+
+    },
+    {
+
+      question: "Can My password will secure in Your wesite",
+      answer: "Yes Your password stored in our database in encrypted form not original plain text "
 
 
     }

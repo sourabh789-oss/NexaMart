@@ -63,7 +63,7 @@ function Footer() {
         <footer className='bottom grid grid-cols-5 gap-16 px-6 py-4 my-7 ml-2'>
             <div className='flex flex-col gap-3 mr-8 '>
                 <span className='text-[#27E0B3] text-3xl '
-                >Shopify</span>
+                >NexaMart</span>
                 <div>
                     <div className='font-light text-gray-500'>
                         Your All in one Destination
@@ -86,12 +86,12 @@ function Footer() {
                             <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info2}</li>
 
                             <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info3}</li>
-                           
-                            {Element.Info.info4?
-                            <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info4}</li>:null}
 
-                            {Element.Info.info5?
-                            <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info5}</li>:null}
+                            {Element.Info.info4 ?
+                                <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info4}</li> : null}
+
+                            {Element.Info.info5 ?
+                                <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info5}</li> : null}
                         </div>
 
                     </div>
@@ -101,7 +101,7 @@ function Footer() {
             }
 
 
-            
+
 
 
 

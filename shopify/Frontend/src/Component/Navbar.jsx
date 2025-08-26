@@ -21,7 +21,7 @@ function Navbar() {
   const [showProfile, setshowProfile] = useState(false);//initially we not show our profile until user clicks 
 
 
-  
+
 
 
   //for navigation show on mobile devices
@@ -58,14 +58,14 @@ function Navbar() {
       animate: { right: "1rem", top: "3rem", opacity: 1 }
     },
     "mobile": {
-      initial: { scaleY: 0, opacity: 0,width:0},
-      animate: { scaleY: 1, opacity: 1,width:"97vw"}
+      initial: { scaleY: 0, opacity: 0, width: 0 },
+      animate: { scaleY: 1, opacity: 1, width: "97vw" }
     }
 
 
   }
 
-  
+
 
 
 
@@ -94,7 +94,7 @@ function Navbar() {
     <p ref={icon2} onClick={CloseNavbar} className='relative   sm:hidden cursor-pointer'><IoCloseSharp className='text-4xl' /></p>
 
     <div ref={Navbarref} className='Navbar flex flex-row justify-between items-center p-4 font-mono overflo  '>
-      <Link to={'/'} onClick={CloseNavbar} > <h1 className='Logopart text-4xl  cursor-pointer text-[#27E0B3]'>Shopify <img className=' -ml-9 inline w-20  h-20 object-cover' src={shopify} alt="" /> </h1>
+      <Link to={'/'} onClick={CloseNavbar} > <h1 className='Logopart text-4xl  cursor-pointer text-[#27E0B3]'>NexaMart<img className=' -ml-4 inline w-20  h-20 object-cover' src={shopify} alt="" /> </h1>
       </Link>
       <div>
         <input type='search' autoFocus className='w-[20rem] border border-gray-400  bg-[#F9F9F9] dark:bg-[#3B3B3B] h-8 py-5 outline-none rounded-3xl pl-1 text-lg  pr-2  dark:text-white ' placeholder='Search here...' />
@@ -104,7 +104,7 @@ function Navbar() {
         <Link to={"/Product"} onClick={CloseNavbar} >  <h1 className=' cursor-pointer text-2xl text-green-800  transition-all hover:decoration-blue-600 hover:underline'>Product</h1></Link>
         <Link to={'/Service'} onClick={CloseNavbar} >  <h1 className='cursor-pointer text-2xl text-green-800  transition-all hover:decoration-blue-600   hover:underline'>Service</h1></Link>
 
- <div>
+        <div>
           <ThemeToggleButton />
         </div>
         {(isLoggedIn || localStorage.getItem("token")) ? <div className="profilecontainer  relative w-12 h-12 shadow-sm ">
@@ -115,7 +115,7 @@ function Navbar() {
             }} title={`${email}`} src="https://d8it4huxumps7.cloudfront.net/uploads/images/unstop/user-avatar/png/11.png" className='w-full h-full rounded-full cursor-pointer' alt="" />
 
             <motion.div
-             
+
               initial="initial"
               animate={showProfile ? "animate" : "initial"}
               variants={isMobile ? variants.mobile : variants.desktop}
@@ -123,7 +123,7 @@ function Navbar() {
                 duration: 0.5,
                 ease: 'anticipate'
               }}
-             
+
               className={`
                  profilecontainer absolute rounded-md dark:border-none overflow-hidden border bg-[#F9F9F9] dark:bg-gray-700 ${isMobile ? "relative -left-40  mx-5  " : "right-0 top-12"}  `}
             > <ProfileShow setshowProfile={setshowProfile} firstname={firstname} lastname={lastname} MobileNo={MobileNo} email={email} />
@@ -135,7 +135,7 @@ function Navbar() {
         </div>
           : <Link to={'/Create'} onClick={CloseNavbar}  >   <h1 className='cursor-pointer text-xl'><button className=' px-4 py-2 text-white font-bold bg-blue-500 rounded-md'>Create Account</button></h1></Link>}
 
-       
+
       </div>
 
 

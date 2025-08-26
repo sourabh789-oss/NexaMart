@@ -43,7 +43,7 @@ function Landingpage() {
     return (
         <div className='Landingpage mt-28 ml-7 flex flex-col items-start gap-3 '>
             <h1 className='text-5xl'><i className='wave'>👋</i> Welcome to <span className='text-[#27E0B3]'
-            >Shopify</span></h1>
+            >NexaMart</span></h1>
             <h2 className='text-4xl  ml-6'>Your One-Stop Online Fashion Destination</h2>
             <p className='font-mono text-xl '>
                 Discover the latest trends in 🛍️ fashion, all in one place! From stylish men's and women's clothes </p>
@@ -88,7 +88,7 @@ function Landingpage() {
           
             <Footer />
             <hr className='h-1 text-white w-full ' />
-            <section className='text-center w-full mt-3 text-2xl '> All Rights Reserved </section>
+            <section className='text-center w-full mt-3 text-2xl text-[#27E0B3] pb-5'>Made with &nbsp; ❤️ </section>
 
         </div>
 
