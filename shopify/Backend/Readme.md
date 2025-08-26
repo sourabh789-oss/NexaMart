@@ -1,4 +1,4 @@
-# Shopify Backend API Documentation
+# NexaMart Backend API Documentation
 
 A Node.js/Express.js backend service for user authentication and payment processing.
 
