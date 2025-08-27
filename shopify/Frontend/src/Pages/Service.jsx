@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '../Component/Button'
 import { CardSwipe } from '../components/ui/card-swipe'
+import ErrorBoundary from '../Component/ErrorBoundary';
 function Service() {
   const images = [
     { src: "https://images.unsplash.com/photo-1619603364904-c0498317e145?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", alt: "Card 1" },
@@ -39,7 +40,9 @@ function Service() {
       </div>
 
       <div className="w-full">
+        <ErrorBoundary>
         <CardSwipe images={images} autoplayDelay={2000} slideShadows={false} />
+        </ErrorBoundary>
       </div>
 
     </div>

@@ -17,7 +17,7 @@ import UserProtectWrapper from './Pages/UserProtectWrapper';
 
 import StripeProvider from './Pages/StripeProvider';
 import Payment from './Pages/Payment';
-import { LocateOff } from 'lucide-react';
+import ErrorBoundary from './Component/ErrorBoundary';
 
 
 const App = () => {
@@ -55,10 +55,10 @@ const location=useLocation();
      { !(noscrollbarRoutes.includes(location.pathname)) && <Scrollbar />}
         <Routes>
           <Route path='/' element={<UserProtectWrapper><Landingpage /></UserProtectWrapper>}></Route>
-          <Route path='/Create' element={<Create />}></Route>
-          <Route path='/Login' element={<Login />}></Route>
+          <Route path='/Create' element={<ErrorBoundary><Create /></ErrorBoundary>}></Route>
+          <Route path='/Login' element={<ErrorBoundary><Login/></ErrorBoundary>}></Route>
           <Route path='/Product' element={<UserProtectWrapper><StripeProvider><Product /></StripeProvider></UserProtectWrapper>}></Route>
-          <Route path='/Service' element={<Service />}></Route>
+          <Route path='/Service' element={<ErrorBoundary><Service /></ErrorBoundary>}></Route>
           <Route path='/payment' element={<StripeProvider><Payment></Payment></StripeProvider>} />
 
         </Routes>

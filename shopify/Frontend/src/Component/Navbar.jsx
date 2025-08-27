@@ -9,6 +9,7 @@ import { ProfileData } from '../context/ProfileContext'
 import ProfileShow from './ProfileShow';
 import { motion } from 'framer-motion';
 import useMobile from "../hooks/useMobile"
+import ErrorBoundary from './ErrorBoundary';
 function Navbar() {
 
 
@@ -105,7 +106,9 @@ function Navbar() {
         <Link to={'/Service'} onClick={CloseNavbar} >  <h1 className='cursor-pointer text-2xl text-green-800  transition-all hover:decoration-blue-600   hover:underline'>Service</h1></Link>
 
         <div>
+          <ErrorBoundary>
           <ThemeToggleButton />
+          </ErrorBoundary>
         </div>
         {(isLoggedIn || localStorage.getItem("token")) ? <div className="profilecontainer  relative w-12 h-12 shadow-sm ">
           <div className='flex flex-col'>
@@ -126,7 +129,10 @@ function Navbar() {
 
               className={`
                  profilecontainer absolute rounded-md dark:border-none overflow-hidden border bg-[#F9F9F9] dark:bg-gray-700 ${isMobile ? "relative -left-40  mx-5  " : "right-0 top-12"}  `}
-            > <ProfileShow setshowProfile={setshowProfile} firstname={firstname} lastname={lastname} MobileNo={MobileNo} email={email} />
+            > 
+            <ErrorBoundary>
+            <ProfileShow setshowProfile={setshowProfile} firstname={firstname} lastname={lastname} MobileNo={MobileNo} email={email} />
+            </ErrorBoundary>
             </motion.div>
 
 
