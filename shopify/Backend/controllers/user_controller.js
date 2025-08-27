@@ -73,41 +73,14 @@ module.exports.loginUser = async (req, res, next) => {
 
     const token = await user.generateAuthToken();
 
-    res.cookie('token', token);
+    res.cookie('token', token,{//for deployment issue that's why use this to proper token expired 
+        maxAge:7*24*60*60*1000,
+        httpOnly:true,
+        samesite:"none",
+        secure:true
+    });
 
-    //now send the message on that  User Mobile No 
-
-//      try{
-//     await axios.post(process.env.FAST2_API_URL, {
-
-//         route: "q",
-//         message: "You have successfully Logged in 🚀",
-//         language: "english",
-//         numbers: user.Phoneno,
-
-
-//     }, {
-//         headers: {
-//             authorization: process.env.FAST2_SMS_API_KEY,
-//             "Content-Type": "application/json"
-
-
-//         }
-
-
-
-
-//     })
-// }catch(error){
-//      if(error.response){
-//          console.log("Fast2 SMS error",error.response.data);
-//      }
-//      else{
-//   console.log("Axios error:",error.message);
-//      }
-     
-// }
-
+   
 
 
 
