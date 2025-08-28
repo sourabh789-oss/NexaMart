@@ -104,7 +104,11 @@ module.exports.logoutUser = async (req, res, next) => {
 
     await blackListTokenModel.create({ token });//now create the token in blackList token model database 
 
-    res.clearCookie(token);
+    res.clearCookie("token",{
+        httpOnly:true,
+        samesite:"none",
+        secure:true
+    });
 
     return res.status(200).json({ message: "User Logged out successfully" });
 
