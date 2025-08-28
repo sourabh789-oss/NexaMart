@@ -73,14 +73,14 @@ module.exports.loginUser = async (req, res, next) => {
 
     const token = await user.generateAuthToken();
 
-    res.cookie('token', token,{//for deployment issue that's why use this to proper token expired 
-        maxAge:7*24*60*60*1000,
-        httpOnly:true,
-        samesite:"none",
-        secure:true
+    res.cookie('token', token, {//for deployment issue that's why use this to proper token expired 
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        samesite: "none",
+        secure: true
     });
 
-   
+
 
 
 
@@ -96,22 +96,27 @@ module.exports.userProfile = (req, res, next) => {
 
 
 module.exports.logoutUser = async (req, res, next) => {
-    const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
 
-    if (!token) {
-        return res.status(400).json("Token not found")
+    try {
+        const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
+
+        if (token) {
+
+            await blackListTokenModel.create({ token });//now create the token in blackList token model database 
+        }
+
+
+        res.clearCookie("token", {
+            httpOnly: true,
+            samesite: "none",
+            secure: true
+        });
+
+        return res.status(200).json({ message: "User Logged out successfully" });
     }
-
-    await blackListTokenModel.create({ token });//now create the token in blackList token model database 
-
-    res.clearCookie("token",{
-        httpOnly:true,
-        samesite:"none",
-        secure:true
-    });
-
-    return res.status(200).json({ message: "User Logged out successfully" });
-
+    catch (err) {
+        return res.status(500).json({ message: "Logout Failed", err });
+    }
 
 
 }
