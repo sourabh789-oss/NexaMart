@@ -32,7 +32,7 @@ router.post('/login', [
 
 router.get('/profile', middleware.AuthUser, userController.userProfile);
 
-router.get('/logout', middleware.AuthUser, userController.logoutUser);
+router.get('/logout', userController.logoutUser);
 
 
 //payment post request 
