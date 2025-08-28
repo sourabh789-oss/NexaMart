@@ -11,7 +11,7 @@ const ProfileShow = ({ firstname, lastname, MobileNo, email,setshowProfile }) =>
     const logouthander = async () => {
       //call our server profile endpoint 
        try{
-      const response=await axios.get(`${import.meta.VITE_BASE_URL}/user/logout`,{withCredentials:true});
+      const response=await axios.get(`${import.meta.env.VITE_BASE_URL}/user/logout`,{withCredentials:true});
       
           if(response.status===200){
               localStorage.removeItem("token");
