@@ -96,7 +96,7 @@ module.exports.userProfile = (req, res, next) => {
 
 
 module.exports.logoutUser = async (req, res, next) => {
-
+//updated according to deployment issue 
     try {
         const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
 
@@ -106,7 +106,7 @@ module.exports.logoutUser = async (req, res, next) => {
         }
 
 
-        res.clearCookie("token", {
+        res.clearCookie("token", {//for our backend server is on another site and frontend server is on other side 
             httpOnly: true,
             samesite: "none",
             secure: true
