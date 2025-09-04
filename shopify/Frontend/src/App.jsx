@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from 'react';
+import react, { useEffect, useState,useLayoutEffect} from 'react';
 import Navbar from './Component/Navbar';
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Create from './Pages/Create';
@@ -22,6 +22,20 @@ import ErrorBoundary from './Component/ErrorBoundary';
 
 const App = () => {
 
+  const [animate,setanimate]=useState(true);
+  useLayoutEffect(()=>{
+       function updateSize(){
+    setanimate(window.innerWidth>768);
+    
+    }
+  
+     updateSize();
+      window.addEventListener("resize",updateSize);
+  
+      return ()=> window.removeEventListener("resize",updateSize);
+  
+     },[768])
+
   //give loader when page load using useState and useEffect 
   const [loading, setLoading] = useState(true);
 const location=useLocation();
@@ -42,6 +56,10 @@ const location=useLocation();
 
   }
 
+  
+     
+  
+
   const noscrollbarRoutes=['/payment']
 
 
@@ -55,8 +73,8 @@ const location=useLocation();
      { !(noscrollbarRoutes.includes(location.pathname)) && <Scrollbar />}
         <Routes>
           <Route path='/' element={<UserProtectWrapper><Landingpage /></UserProtectWrapper>}></Route>
-          <Route path='/Create' element={<ErrorBoundary><Create /></ErrorBoundary>}></Route>
-          <Route path='/Login' element={<ErrorBoundary><Login/></ErrorBoundary>}></Route>
+          <Route path='/Create' element={<ErrorBoundary><Create animate={animate} /></ErrorBoundary>}></Route>
+          <Route path='/Login' element={<ErrorBoundary><Login animate={animate}/></ErrorBoundary>}></Route>
           <Route path='/Product' element={<UserProtectWrapper><StripeProvider><Product /></StripeProvider></UserProtectWrapper>}></Route>
           <Route path='/Service' element={<ErrorBoundary><Service /></ErrorBoundary>}></Route>
           <Route path='/payment' element={<StripeProvider><Payment></Payment></StripeProvider>} />
