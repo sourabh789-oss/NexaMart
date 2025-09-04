@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { ProfileData } from '../context/ProfileContext'
 import axios from 'axios';
 
-function Create() {
+function Create({animate}) {
     const navigate = useNavigate();
 
     const [Firstname, setFirstname] = useState("");
@@ -40,7 +40,10 @@ function Create() {
 
         // post request api call on backend with data UserData;
         try {
-            const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/Register`, UserData);
+            // const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/Register`, 
+            const response = await axios.post(`${import.meta.env.VITE_MYBACKENDURL}/user/Register`, 
+                
+                UserData);
             if (response.status === 201) {//means everything is ok 
                 const data = response.data;
 
@@ -69,39 +72,43 @@ function Create() {
     }
 
 
-    return (<motion.div className='formcontainer box-border relative dark:text-white   mt-[3%] left-[30%]' drag dragConstraints={{
+    return (<motion.div className='formcontainer box-border relative dark:text-white   mt-[3%] left-[30%]'
+         animate={{
+             opacity:[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.9,1]
+         }}
+
+          transition={{
+         delay:0.1,
+         duration:1.4,
+          
+       }}
+        { ...(animate && {
+        drag:true,
+         dragConstraints:{
         left: 0,
         right: 400,
         bottom: 0,
         top: 100
-    }}
+    },
 
-        animate={{
-            opacity: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.9, 1]
-        }}
-
-        transition={{
-            delay: 0.1,
-            duration: 1.4,
-
-        }}
-
-        whileDrag={{
+        whileDrag:{
             scale: 0.8
-        }}
+        },
 
 
-        dragElastic={2}
-        dragTransition={{
+        dragElastic:2,
+        dragTransition:{
             bounceStiffness: 5,
 
 
-        }}
+        },
+
+         } )}
     >
         <h1 className='text-4xl mb-4 font-mono  text-[#90e027] dark:text-red-700'>Create Your Account</h1>
         <form onSubmit={(e) => {
             submitted(e);
-        }} className='flex flex-col gap-4  w-1/3 border-2  border-white/20  rounded-md  bg-[#f9f9f9] backdrop-blur-md shadow-xl dark:bg-white/5  text-black dark:text-white  dark:border-white/10 p-5'>
+        }} className='flex flex-col gap-4  w-1/3 border-2  border-white/20 shadow-md  rounded-md  bg-[#f9f9f9] backdrop-blur-md dark:backdrop-blur-lg  dark:shadow-lg dark:bg-white/10  text-black dark:text-white  dark:border-white/20 p-5'>
             <div className='flex gap-3' >
                 <input value={Firstname} onChange={(e) => {
                     setFirstname(e.target.value)

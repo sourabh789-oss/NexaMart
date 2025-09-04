@@ -6,7 +6,7 @@ import { motion } from 'motion/react';
  import {ProfileData} from '../context/ProfileContext'
  import axios from 'axios'
 
-function Login() {
+function Login({animate}) {
 
  const [email,setEmail]=useState("");
  const [password,setPassword]=useState("");
@@ -15,6 +15,20 @@ function Login() {
     const {setAccountcreate,setToken,setLoggedIn,setfirstname,setlastname,setemail}=useContext(ProfileData);
   const navigate=useNavigate();
 
+  //  const [animate,setanimate]=useState(true);
+
+  //  useLayoutEffect(()=>{
+  //    function updateSize(){
+  // setanimate(window.innerWidth>768);
+  
+  // }
+
+  //  updateSize();
+  //   window.addEventListener("resize",updateSize);
+
+  //   return ()=> window.removeEventListener("resize",updateSize);
+
+  //  },[768])
 
 
 
@@ -27,7 +41,8 @@ async  function loggedin(e){
  }
 
   try{
-   const response= await axios.post(`${import.meta.env.VITE_BASE_URL}/user/login`,user);
+  //  const response= await axios.post(`${import.meta.env.VITE_BASE_URL}/user/login`,user);
+  const response=await axios.post(`${import.meta.env.VITE_MYBACKENDURL}/user/login`,user);
    
     if(response.status===200){
           const data=response.data;
@@ -41,7 +56,7 @@ async  function loggedin(e){
     }
 
 }catch(error){
-  console.log(`${error.status,error.name}`);
+  console.log(`Here error comes ${error.status,error.name}`);
 
 }
 
@@ -60,28 +75,27 @@ async  function loggedin(e){
          duration:1.4,
           
        }}
-
-     drag dragConstraints={{
-         left:0,
-          right:400,
-          bottom:0,
-          top:100
-    }}
-    
-     whileDrag={{
+{
+    ...(animate && {
+  drag:true,
+  dragConstraints:{
+      left:0,
+      right:400,
+      bottom:0,
+      top:100
+},  
+     whileDrag:{
          scale:0.8
-     }}
-
-    
-       dragElastic={2}
-        dragTransition={{
+     },
+       dragElastic:2,
+        dragTransition:{
              bounceStiffness:5,
-          
-           
-        }}
+            
+        },
+})}
     className=' formcontainer relative   mt-[4%] left-[30%]'>
          <h1  className='login text-4xl  ml-32 mb-4 font-mono text-[#90e027] dark:text-[#27E0B3]'>Login </h1>
-          <form className='flex flex-col gap-4  w-1/3 border-2  border-white/20  rounded-md backdrop-blur-md shadow-xl  bg-[#f9f9f9] dark:backdrop-blur-md dark:shadow-xl  dark:bg-white/5 dark:text-white  dark:border-white/10 p-5' onSubmit={(e)=>{
+          <form className='flex flex-col gap-4  w-1/3 border-2  border-white/20  rounded-md backdrop-blur-md shadow-xl  bg-[#f9f9f9] dark:backdrop-blur-lg dark:shadow-lg  dark:bg-white/10 dark:text-white  dark:border-white/20 p-5' onSubmit={(e)=>{
    loggedin(e)
           }}>
             <input value={email} onChange={(e) => {
