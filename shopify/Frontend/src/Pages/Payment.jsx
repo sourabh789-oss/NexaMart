@@ -30,22 +30,7 @@ const Payment = () => {
 
 
 
-    // 🔹 Observe theme changes dynamically
-    // useEffect(() => {
-    //     const observer = new MutationObserver(() => {
-    //         setDark(document.documentElement.classList.contains("dark"));
-    //     });
-
-    //     observer.observe(document.documentElement, {
-    //         attributes: true,
-    //         attributeFilter: ["class"],
-    //     });
-
-    //     return () => observer.disconnect();
-    // }, []);
-
-
-    //here api call for payment intent  from backend 
+   
 
     const handleSubmit = async (e) => {
 
