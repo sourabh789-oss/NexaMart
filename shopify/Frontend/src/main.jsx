@@ -5,13 +5,27 @@ import './index.css'
 import UserContext from "./context/UserContext.jsx";
 import ProfileContext from "./context/ProfileContext.jsx";
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient({
+   defaultOptions:{
+     queries:{
+       refetchOnWindowFocus:false,//prevents unnecessary api calls when user switches tabs
+       retry:1,//retry one time on error when data fetch of any api 
+
+     }
+   }
+});
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <ProfileContext>
         <UserContext>
-          <App />
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
         </UserContext>
       </ProfileContext>
 
