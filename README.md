@@ -1,1 +1,1 @@
-Live Now :https://nexamart.onrender.com
+Live Now :https://nexa-mart-iota.vercel.app
