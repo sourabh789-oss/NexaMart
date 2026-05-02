@@ -37,7 +37,7 @@ router.get('/logout', userController.logoutUser);
 
 //payment post request 
 
-router.post("create-payment-intent",user_payment_controller.payment) 
+router.post("/create-order", middleware.AuthUser, user_payment_controller.payment) 
 
 module.exports = router;//exports this our multiple routes by using router of express.Router 
 

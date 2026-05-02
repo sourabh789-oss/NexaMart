@@ -29,14 +29,21 @@ module.exports.AuthUser = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
    // console.log(decoded);
       const user = await userModel.findById(decoded._id);//when we use so make sure in your schema .sign work with only simple function with this pointer but in arrow function this pointer not work so not use arrow function 
+       
+
+       if (!user) {
+   return res.status(401).json({ message: "User not found" });
+}
 
       // console.log(user);
       // console.log("running");
-      req.user = user;
+      req.user = user;//here actual request modified and give the user in request 
+
 
       next();//call the next middleware 
 
    } catch (error) {
+      console.log("JWT error ",error.message);
       return res.status(401).json({ message: "Unauthorised User" })
 
    }

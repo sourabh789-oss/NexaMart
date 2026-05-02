@@ -1,26 +1,28 @@
 import React, { createContext, useEffect, useState } from 'react'
 import axios from 'axios';//for check profile checkpoint 
 import { useTheme } from 'next-themes';
+import { useProfile } from '@/hooks/userProfile';
 
 export const ProfileData = createContext();
 
 const ProfileContext = ({ children }) => {
   const [Accountcreate, setAccountcreate] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));//initally it starts from our localstorge present or not token if already present then show the profile 
+  const [isLoggedIn, setLoggedIn] = useState(!!token);
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
   const [email, setemail] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("token"));//initally it starts from our localstorge present or not token if already present then show the profile 
   const [MobileNo, setMobileNo] = useState(null);
   const [isdark, setDark] = useState(false);//intially we are in toggle mode 
- const {theme,setTheme,resolvedTheme}=useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setmounted] = useState(false);
 
- const [mounted,setmounted]=useState(false);
+  const { data, isError } = useProfile(token);//call the module import function and passing the parameter also
 
- //wait until client side hydration 
-  useEffect(()=>{
+  //wait until client side hydration 
+  useEffect(() => {
     setmounted(true);
-  },[])
+  }, [])
 
   //this will rerender whenever our state will change when we create the account 
   useEffect(() => {
@@ -28,37 +30,6 @@ const ProfileContext = ({ children }) => {
       localStorage.setItem("token", token);
       setAccountcreate(true);
       setLoggedIn(true);
-
-      const fetchProfile = async () => {
-
-        //check the token is present in our headers or not or authentic token or not 
-        try {
-          const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/profile`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            }
-          }
-          )
-
-
-          const data = response.data;
-
-          if (response.status === 200) {
-            setfirstname(data.fullname?.firstname || "");
-            setlastname(data.fullname?.Lastname || "");
-            setemail(data.email || "");
-            setMobileNo(data.Phoneno || "");
-          }
-
-        }
-        catch (error) {
-          console.log(error);
-        }
-
-
-      }
-      fetchProfile();
-
     }
     else {
       localStorage.removeItem("token");
@@ -67,7 +38,7 @@ const ProfileContext = ({ children }) => {
       setfirstname("");
       setlastname("");
       setemail("");
-      setMobileNo("");
+      setMobileNo(null);
 
     }
 
@@ -75,17 +46,29 @@ const ProfileContext = ({ children }) => {
   }, [token])
 
 
-  //intially theme system default then toggle theme on user interaction 
-  useEffect(()=>{
-     if(mounted){
-   setDark((resolvedTheme ||theme)==="dark");
+  //update profile state from api 
+  useEffect(() => {
+    if (data) {
+      setfirstname(data.fullname?.firstname || "");
+      setlastname(data.fullname?.Lastname || "");
+      setemail(data.email || "");
+      setMobileNo(data.Phoneno || "");
 
-   }
-  },[theme,resolvedTheme,mounted])
+    }
+  }, [data])
+
+
+  //intially theme system default then toggle theme on user interaction 
+  useEffect(() => {
+    if (mounted) {
+      setDark((resolvedTheme || theme) === "dark");
+
+    }
+  }, [theme, resolvedTheme, mounted])
 
 
   return (
-    <ProfileData.Provider value={{ Accountcreate, setAccountcreate, MobileNo, setMobileNo, isLoggedIn, setLoggedIn, firstname, setfirstname, lastname, setlastname, email, setemail, token, setToken, isdark, setDark,setTheme,theme}}>
+    <ProfileData.Provider value={{ Accountcreate, setAccountcreate, MobileNo, setMobileNo, isLoggedIn, setLoggedIn, firstname, setfirstname, lastname, setlastname, email, setemail, token, setToken, isdark, setDark, setTheme, theme,isError}}>
       {children}
     </ProfileData.Provider>
   )

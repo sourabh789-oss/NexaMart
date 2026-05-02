@@ -42,7 +42,7 @@ module.exports.registerUser = async (req, res, next) => {
     //now create the token 
     const token = user.generateAuthToken();
 
-    return res.status(201).json({ token, user });//after successfully create the account it return response token and user 
+    return res.status(201).json({user });//after successfully create the account it return response token and user 
 
 }
 
@@ -73,10 +73,10 @@ module.exports.loginUser = async (req, res, next) => {
 
     const token = await user.generateAuthToken();
 
-    res.cookie('token', token, {//for deployment issue that's why use this to proper token expired 
+    res.cookie('token', token, {//for deployment issue that's why use this to proper token expired and for security purpose 
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-        samesite: "none",
+        sameSite: "none",
         secure: true
     });
 
@@ -84,7 +84,7 @@ module.exports.loginUser = async (req, res, next) => {
 
 
 
-    res.status(200).json({ token, user })
+    res.status(200).json({  user })
 
 
 }

@@ -14,7 +14,8 @@ npm install
 PORT=4000
 DB_CONNECT=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
-STRIPE_SECRET_KEY=your_stripe_secret_key
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
 ```
 
 3. Start the server:
@@ -68,12 +69,21 @@ http://localhost:4000
 
 ### Payment Routes
 
-#### 1. Create Payment Intent
-- **Endpoint:** `POST /user/create-payment-intent`
-- **Description:** Create a Stripe payment intent
+#### 1. Create Order
+- **Endpoint:** `POST /user/create-order`
+- **Description:** Create a Razorpay order
 ```json
 {
   "amount": 1000
+}
+```
+- **Response:**
+```json
+{
+  "orderId": "order_xyz",
+  "amount": 1000,
+  "currency": "USD",
+  "key": "your_razorpay_key_id"
 }
 ```
 
