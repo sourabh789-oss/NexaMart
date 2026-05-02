@@ -1,7 +1,6 @@
-import { CardElement, useElements, useStripe, Elements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { motion } from 'motion/react';
 import { ProfileData } from '../context/ProfileContext';
 
@@ -14,18 +13,8 @@ const Payment = () => {
 
     const [processing, setProcessing] = useState(false);
     const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(false);
-    const stripe = useStripe();
-    const elements = useElements();
-    const { isdark } = useContext(ProfileData);//for reset the value when we toggle in white and dark mode 
-
-
-    // Force re-render of CardElement when theme changes
-    const [themeKey, setThemeKey] = useState(isdark ? "dark" : "light");
-
-    useEffect(() => {
-        setThemeKey(isdark ? "dark" : "light");
-    }, [isdark]);
+    const [success, setSuccess] = useState(null);
+    const { firstname, lastname, email, MobileNo, isdark } = useContext(ProfileData);
 
 
 
@@ -33,120 +22,126 @@ const Payment = () => {
    
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-        if (!stripe || !elements) {//if any wrong then simpley return no action above 
+
+        if (!product) {
+            setError('Please select a product before continuing.');
+            return;
+        }
+
+        if (!window?.Razorpay) {
+            setError('Razorpay checkout is not available yet. Please refresh the page.');
             return;
         }
 
         setProcessing(true);
         setError(null);
-
+        setSuccess(null);
 
         try {
-            //call backend route to create Payment Intent 
-
-            const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/create-payment-intent`, {
-
-                amount: Math.round(product.price * 100),//stripe accept cents 
-
-            }
-
-            );
-            const clientSecret = data.clientSecret;
-
-            //confirm card Payment 
-            const cardElement = elements.getElement(CardElement);
-
-            const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-                payment_method: {
-                    card: cardElement,
-                },
+            const usdToInrRate = 83; // Approximate USD to INR conversion rate (update as needed)
+            const amountInInr = product.price * usdToInrRate;//for convert the amount of dollar into Indian rupey 
+            const { data } = await axios.post(`${import.meta.env.VITE_MYBACKENDURL}/user/create-order`, {
+                amount: Math.round(amountInInr * 100), // Convert to paise
+            }, {
+              withCredentials:true 
             });
 
-            if (error) {
-                setError(error.message);
-                setProcessing(false);
-            }
-            else if (paymentIntent && paymentIntent.status === "succeeded") {
-                setSuccess(true);
-                setProcessing(false);
-                setError(null);
-                setTimeout(() => {
-                    setSuccess(false),
-                        3000
-                })
-            }
+            const options = {
+                key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+                amount: data.amount,
+                currency: data.currency,
+                order_id: data.orderId,
+                name: 'Nexamart Store',
+                description: product.title || product.category || 'Product purchase',
+                image: '/favicon.ico',
+                theme: {
+                    color: isdark ? '#90e027' : '#27E0B3',
+                },
+                prefill: {
+                    name: `${firstname || ''} ${lastname || ''}`.trim(),
+                    email: email || '',
+                    contact: MobileNo || '',
+                },
+                handler: function (response) {
+                    if (response?.razorpay_payment_id) {
+                        setSuccess('Payment successful! Thank you for your order.');
+                        setError(null);
+                    } else {
+                        setError('Payment was not completed.');
+                    }
+                    setProcessing(false);
+                },
+                modal: {
+                    ondismiss: function () {
+                        setProcessing(false);
+                    },
+                },
+            };
 
-
-
+            const razorpay = new window.Razorpay(options);
+            razorpay.open();
         } catch (err) {
-            setError(err.response?.data?.message || "Payment failed. Try Again");
+            setError(err.response?.data?.error || err.message || 'Unable to initiate payment.');
             setProcessing(false);
         }
-
-
     };
 
     if (!product) {
         return <h2>Please Select Product Which One You want to Buy</h2>
     }
 
+    return (
+        <motion.div className='min-h-screen px-4 py-10 sm:px-6 lg:px-8 bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white'
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+        >
+            <div className='mx-auto w-full max-w-3xl'>
+                <div className='grid gap-8 lg:grid-cols-[1.2fr_0.8fr]'>
+                    <section className='rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl dark:border-slate-800 dark:bg-slate-900'>
+                        <h1 className='text-3xl font-semibold text-slate-900 dark:text-white'>Secure Checkout</h1>
+                        <p className='mt-3 text-sm text-slate-600 dark:text-slate-400'>Confirm your purchase and complete payment using Razorpay.</p>
+                        <div className='mt-8 space-y-4'>
+                            <div className='rounded-3xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950'>
+                                <h2 className='text-lg font-semibold text-slate-900 dark:text-white'>Product</h2>
+                                <p className='mt-2 text-sm text-slate-600 dark:text-slate-400'>{product.title || product.category}</p>
+                            </div>
+                            <div className='rounded-3xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950'>
+                                <h2 className='text-lg font-semibold text-slate-900 dark:text-white'>Amount</h2>
+                                <p className='mt-2 text-xl font-bold text-emerald-600 dark:text-emerald-400'>₹{Math.round(product.price * 83)}</p>
+                            </div>
+                            <div className='rounded-3xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950'>
+                                <h2 className='text-lg font-semibold text-slate-900 dark:text-white'>Billing Info</h2>
+                                <p className='mt-2 text-sm text-slate-600 dark:text-slate-400'>{`${firstname || 'Guest'} ${lastname || ''}`.trim()}</p>
+                                <p className='text-sm text-slate-600 dark:text-slate-400'>{email || 'Email not available'}</p>
+                                <p className='text-sm text-slate-600 dark:text-slate-400'>{MobileNo || 'Phone not available'}</p>
+                            </div>
+                        </div>
+                    </section>
 
-
-    return (<motion.div className=' paynmentcontainer flex   mt-[4%]  justify-center items-center   dark:bg-[#000000]px-4'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-
-    >
-
-
-        <form onSubmit={handleSubmit} className=' w-full max-w-md p-8 rounded-2xl shadow-2xl border border-white/20 bg-[#f9f9f9]  backdrop-blur-xl  dark:bg-gradient-to-r from-stone-500 to-stone-700 dark:border-gray-700'>
-            <h1 className='text-3xl text-center  mb-4 font-thin text-[#90e027] '>Secure Payment</h1>
-            <h2 className='text-[#27E0B3]'>Pay for :{product.title}</h2>
-            <p className="mb-4">Amount: <span className="text-gray-600 dark:text-[#90e027]">${product.price}</span></p>
-            <div className="rounded-xl border border-white/20   backdrop-blur-md p-3 mb-4" >
-                <CardElement className='card'
-                    key={themeKey}
-                    options={{
-                        style: {
-                            base: {
-                                fontSize: "16px",
-                                // issue here: apply dark mode white color when we toggle unless initially in not toggle in dark mode it stays black color due to prebuilt cardElement
-                                color: isdark
-                                    ? "#ffffff"   // white text in dark mode
-                                    : "#000000",  // black text in light mode,
-                                fontFamily: "monospace, Roboto, sans-serif",
-                                "::placeholder": {
-                                    color: isdark
-                                        ? "#b3b3b3"
-                                        : "#666666",
-                                },
-                                backgroundColor: "transparent",
-                            },
-                            invalid: { color: "#ff4d4d" },
-                            complete: { color: "#90e027" },
-                        },
-                    }} />
+                    <section className='rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl dark:border-slate-800 dark:bg-slate-900'>
+                        <h2 className='text-2xl font-semibold text-slate-900 dark:text-white'>Payment details</h2>
+                        <p className='mt-2 relative  text-sm text-slate-600 dark:text-slate-400'>Click “Pay now” to open the Razorpay checkout modal.</p>
+                        <form onSubmit={handleSubmit} className='mt-8 space-y-5'>
+                            <div className='rounded-3xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-950'>
+                                <p className='text-sm relative  text-slate-600 dark:text-slate-400'>Razorpay will securely process your payment in a popup window.</p>
+                            </div>
+                            <button
+                                type='submit'
+                                disabled={processing}
+                                className='w-full rounded-3xl bg-emerald-400 px-5 py-4 text-base font-semibold text-slate-950 transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-60 dark:text-slate-950'
+                            >
+                                {processing ? 'Opening Razorpay…' : `Pay ₹${Math.round(product.price * 83)}`}
+                            </button>
+                            {error && <p className='text-sm font-medium text-red-600 dark:text-red-400'>{error}</p>}
+                            {success && <p className='text-sm font-medium text-emerald-700 dark:text-emerald-300'>{success}</p>}
+                        </form>
+                    </section>
+                </div>
             </div>
-            <button disabled={!stripe || processing} className='w-full px-4 py-3 rounded-xl bg-[#27E0B3] text-black font-semibold transition-all hover:bg-[#90e027] hover:text-white disabled:opacity-50 dark:bg-[#90e027] dark:text-black dark:hover:bg-[#27E0B3]' type="submit">{processing ? "Processing..." : `$${product.price}`}</button>
-
-            {error && <p className='text-red-500 mt-2'>{error}</p>}
-
-            {success && <p className='text-green-500  mt-2 text-xl '>Payment Successfull ✅</p>}
-
-        </form>
-
-
-
-
-
-    </motion.div>
-
-
-    )
-
-}
+        </motion.div>
+    );
+};
 
 export default Payment;

@@ -21,13 +21,13 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+          <QueryClientProvider client={queryClient}>
       <ProfileContext>
         <UserContext>
-          <QueryClientProvider client={queryClient}>
             <App />
-          </QueryClientProvider>
         </UserContext>
       </ProfileContext>
+          </QueryClientProvider>
 
     </BrowserRouter>
   </StrictMode>

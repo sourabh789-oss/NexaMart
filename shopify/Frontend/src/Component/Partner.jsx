@@ -1,5 +1,5 @@
 import React from "react";
-
+import { motion } from 'motion/react'
 function Partner() {
 
     const images = [
@@ -35,11 +35,24 @@ function Partner() {
 
 
 
-    return <div className='  flex gap-4   w-max  py-2   animate-moveleft '>
+    return <motion.div 
+      initial={{
+             opacity:0,
+             scale:0.9
+          }}
+
+           whileInView={{
+             scale:1,
+             opacity:1,
+           }}
+            viewport={{once:true}}
+            
+             transition={{duration:0.8,ease:"easeOut"}}
+    className='  flex gap-4   w-max  py-2   animate-moveleft '>
 
         {images.map((element, idx) => {
 
-            return <img key={idx} className='partner w-[14rem] h-[14rem]   rounded-full border-none  shadow-[0_0_20px_rgba(255,255,255,1)] shadow-white ' src={element.src} alt="" />
+            return <img key={idx} className='partner w-[14rem] h-[14rem]   rounded-full border-none  shadow-[0_0_20px_rgba(255,255,255,1)] shadow-white ' src={element.src} alt="Brands" loading="lazy" />
         })
 
         }
@@ -53,7 +66,7 @@ function Partner() {
 
 
 
-    </div>
+    </motion.div>
 
 
 

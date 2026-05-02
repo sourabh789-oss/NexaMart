@@ -1,24 +1,22 @@
-import React, { useEffect } from 'react'
- import { useNavigate } from 'react-router-dom'
-function UserProtectWrapper({children}) {
-     const navigate=useNavigate();
+import React, { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ProfileData } from '@/context/ProfileContext';
 
-     //first check the token in our localStorage has or not if not means user  ka account nahi ha or login nahi ha to simple login kro or create kro account 
- const token=localStorage.getItem("token");
+function UserProtectWrapper({ children }) {
+  const navigate = useNavigate();
+ const {isLoggedIn ,hasVerified}=useContext(ProfileData);
 
- useEffect(()=>{
-if(!token){
-     navigate('/Create');
-  }
+  useEffect(() => {
+    // Wait until cookie verification is complete before deciding to redirect 
+    if (hasVerified && !isLoggedIn) {
+      navigate('/login');
+    }
+  }, [isLoggedIn, hasVerified]);
 
- },[token]);
-  
+  // Still verifying — render nothing (or a loader) to avoid flash redirect
+  if (!hasVerified) return  <div>Loading...</div>;;
 
-  return (
-    <>
-    {children}
-    </>
-  )
+  return <>{children}</>;
 }
 
 export default UserProtectWrapper

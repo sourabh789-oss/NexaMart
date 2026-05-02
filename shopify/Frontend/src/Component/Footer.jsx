@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { motion } from 'motion/react'
 function Footer() {
 
 
@@ -60,8 +60,35 @@ function Footer() {
 
 
     return (
-        <footer className='bottom grid grid-cols-5 gap-16 px-6 py-4 my-7 ml-2'>
-            <div className='flex flex-col gap-3 mr-8 '>
+        <motion.footer
+            initial={{
+                y: 20,
+                opacity: 0,
+            }}
+
+            whileInView={{
+                y: 0,
+                opacity: 1,
+            }}
+            viewport={{ once: true }}
+
+            transition={{ duration: 0.8, ease: "easeOut" }}
+
+            className='bottom grid grid-cols-5 gap-16 px-6 py-4 my-7 ml-2'>
+            <motion.div
+                initial={{
+                    x: 20,
+                    opacity: 0
+                }}
+
+                whileInView={{
+                    x: 0,
+                    opacity: 1
+                }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "anticipate" }}
+
+                className='flex flex-col gap-3 mr-8 '>
                 <span className='text-[#27E0B3] text-3xl '
                 >NexaMart</span>
                 <div>
@@ -73,11 +100,29 @@ function Footer() {
                 <input type="email" className='text-center border border-gray-400  -ml-5 w-[15rem] rounded text-red-800  h-8 mb-2 text-lg outline-none dark:text-white ' placeholder='eg124@gmail.com' />
                 <button className='-ml-5 px-4 py-2 rounded-md bg-transparent text-inherit bg-gray-300  hover:bg-[#27E0B3] hover:text-white dark:text-white  dark:hover:bg-red-600 border dark:border-white  
                 transition-transform '>Subscribe</button>
-            </div>
+            </motion.div>
 
             {
                 arr.map((Element, index) => {
-                    return <div key={index} className=' .info relative left-4'>
+                    return <motion.div
+                        initial={{
+                            y: 40,
+                            opacity: 0
+                        }}
+
+                        whileInView={{
+                            y: 0,
+                            opacity: 1
+                        }}
+                        viewport={{
+                            once:true
+                        }}
+
+                        transition={{
+                            duration: 0.8,
+                            ease: "easeInOut"
+                        }}
+                        key={index} className=' .info relative left-4'>
                         <h1 className='hd text-2xl text-[#2758e0] mb-4'>{Element.heading}</h1>
 
                         <div className=' font-light text-gray-500 flex flex-col gap-2'>
@@ -94,7 +139,7 @@ function Footer() {
                                 <li className='list-none  transition-all  cursor-pointer   hover:text-gray-400 hover:underline hover:decoration-slate-500 '>{Element.Info.info5}</li> : null}
                         </div>
 
-                    </div>
+                    </motion.div>
 
                 })
 
@@ -105,7 +150,7 @@ function Footer() {
 
 
 
-        </footer>
+        </motion.footer>
 
 
     )

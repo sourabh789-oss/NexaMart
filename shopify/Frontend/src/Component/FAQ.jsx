@@ -20,14 +20,14 @@ const FAQ = () => {
       question: "How do I create an account?",
       answer: "Click on the Sign Up button at the top right corner, fill in your details, and your account will be created instantly."
     },
-   {
-    question: "What payment methods do you accept?",
-    answer: "We accept credit/debit cards. Currently working to connect with phonepe and Paytm option also"
-  },
     {
-    question: "Are my payment details secure?",
-    answer: "Yes, we use secure encryption and trusted payment gateways to keep your data safe."
-  },
+      question: "What payment methods do you accept?",
+      answer: "We accept credit/debit cards. Currently working to connect with phonepe and Paytm option also"
+    },
+    {
+      question: "Are my payment details secure?",
+      answer: "Yes, we use secure encryption and trusted payment gateways to keep your data safe."
+    },
     {
 
       question: "Can I create more than 1 account",
@@ -37,7 +37,7 @@ const FAQ = () => {
     },
     {
 
-      question: "Can My password will secure in Your wesite",
+      question: "Can My password will secure in Your website",
       answer: "Yes Your password stored in our database in encrypted form not original plain text "
 
 
@@ -63,7 +63,25 @@ const FAQ = () => {
 
 
   return (
-    <div className='userqueries mt-5 text-center w-full box-border'>
+    <motion.div
+
+      initial={{ opacity: 0,scale:0.9}}
+      whileInView={{
+        opacity: 1,
+        scale:1
+
+      }}
+
+      viewport={{
+        once: true
+      }}
+
+      transition={{
+        ease: "easeInOut",
+        duration: 0.8
+      }}
+
+      className='userqueries mt-5 text-center w-full box-border'>
       <h1 className='text-4xl pb-2 text-[#27E0B3]'>Frequently Asked Questions</h1>
       <div className='faq'>
         {
@@ -76,15 +94,15 @@ const FAQ = () => {
               </div>
 
               <AnimatePresence>{openStates[idx] && (
-                 <div className='answercontainer'>
-                <motion.div key="content"
-                  initial={{ opacity: 0, height: 0 }}//when add open
-                  animate={{ opacity: 1, height: "auto" }}//when expand our height 
-                  exit={{ opacity: 0, height: 0 }}//when again remove the height set to initial 
-                  transition={{ duration: 0.35, ease: "easeInOut" }}
-                  className=" dark:bg-gray-800 bg-[#EEEFF0] text-start px-6  ">
-                  <p className='text-[1.3rem] px-2 py-4'> {element.answer} </p>
-                </motion.div> </div>)}
+                <div className='answercontainer'>
+                  <motion.div key="content"
+                    initial={{ opacity: 0, height: 0 }}//when add open
+                    animate={{ opacity: 1, height: "auto" }}//when expand our height 
+                    exit={{ opacity: 0, height: 0 }}//when again remove the height set to initial 
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                    className=" dark:bg-gray-800 bg-[#EEEFF0] text-start px-6  ">
+                    <p className='text-[1.3rem] px-2 py-4'> {element.answer} </p>
+                  </motion.div> </div>)}
               </AnimatePresence>
 
             </div>
@@ -94,7 +112,7 @@ const FAQ = () => {
         }
       </div>
 
-    </div>
+    </motion.div>
   )
 }
 

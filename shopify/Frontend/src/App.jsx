@@ -1,4 +1,4 @@
-import react, { useEffect, useState,useLayoutEffect} from 'react';
+import react, { useEffect, useState, useLayoutEffect } from 'react';
 import Navbar from './Component/Navbar';
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Create from './Pages/Create';
@@ -9,6 +9,8 @@ import Service from './Pages/Service'
 import Loader from './Component/Loader';
 import Scrollbar from './Component/Scrollbar';
 import 'remixicon/fonts/remixicon.css'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 // import useLocoScroll from './Scrollbehaviour/useLocoScroll';//our custom hooks but issue for not show scrollbar component and also product page not scroll properly so not use now  
 
@@ -20,25 +22,26 @@ import Payment from './Pages/Payment';
 import ErrorBoundary from './Component/ErrorBoundary';
 
 
+
 const App = () => {
 
-  const [animate,setanimate]=useState(true);
-  useLayoutEffect(()=>{
-       function updateSize(){
-    setanimate(window.innerWidth>768);
-    
+  const [animate, setanimate] = useState(true);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setanimate(window.innerWidth > 768);
+
     }
-  
-     updateSize();
-      window.addEventListener("resize",updateSize);
-  
-      return ()=> window.removeEventListener("resize",updateSize);
-  
-     },[768])
+
+    updateSize();
+    window.addEventListener("resize", updateSize);
+
+    return () => window.removeEventListener("resize", updateSize);
+
+  }, [768])
 
   //give loader when page load using useState and useEffect 
   const [loading, setLoading] = useState(true);
-const location=useLocation();
+  const location = useLocation();
 
   // useLocoScroll(!loading);
   useEffect(() => {
@@ -56,11 +59,11 @@ const location=useLocation();
 
   }
 
-  
-     
-  
 
-  const noscrollbarRoutes=['/payment']
+
+
+
+  const noscrollbarRoutes = ['/payment']
 
 
 
@@ -70,19 +73,29 @@ const location=useLocation();
     <div className='app min-h-screen overflow-x-hidden bg-[#f9fafb] text-black  dark:bg-black dark:text-white transition-colors duration-300' data-scroll-container>
       <div>
         <Navbar />
-     { !(noscrollbarRoutes.includes(location.pathname)) && <Scrollbar />}
+        {!(noscrollbarRoutes.includes(location.pathname)) && <Scrollbar />}
         <Routes>
           <Route path='/' element={<UserProtectWrapper><Landingpage /></UserProtectWrapper>}></Route>
           <Route path='/Create' element={<ErrorBoundary><Create animate={animate} /></ErrorBoundary>}></Route>
-          <Route path='/Login' element={<ErrorBoundary><Login animate={animate}/></ErrorBoundary>}></Route>
-          <Route path='/Product' element={<UserProtectWrapper><StripeProvider><Product /></StripeProvider></UserProtectWrapper>}></Route>
+          <Route path='/Login' element={<ErrorBoundary><Login animate={animate} /></ErrorBoundary>}></Route>
+          <Route path='/Product' element={<UserProtectWrapper><Product /></UserProtectWrapper>}></Route>
           <Route path='/Service' element={<ErrorBoundary><Service /></ErrorBoundary>}></Route>
-          <Route path='/payment' element={<StripeProvider><Payment></Payment></StripeProvider>} />
+          <Route path='/payment' element={<UserProtectWrapper><StripeProvider><Payment /></StripeProvider></UserProtectWrapper>} />
 
         </Routes>
       </div>
 
-
+      <ToastContainer position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
 
     </div>
   </ThemeProvider>

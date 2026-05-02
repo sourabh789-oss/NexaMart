@@ -2,10 +2,11 @@ import { motion } from 'motion/react';
 import React, { useContext, useState } from 'react';
 import { UserdataContext } from '../context/UserContext';
 import { Link, useNavigate } from 'react-router-dom'
-import { ProfileData } from '../context/ProfileContext'
+import { ProfileData } from '../context/ProfileContext';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 
-function Create({animate}) {
+function Create({ animate }) {
     const navigate = useNavigate();
 
     const [Firstname, setFirstname] = useState("");
@@ -18,7 +19,7 @@ function Create({animate}) {
 
     const { userdata, setuserdata } = useContext(UserdataContext);//extact our provider value from userContext userdata,setuserdata
 
-    const { setToken } = useContext(ProfileData);
+    const { setLoggedIn } = useContext(ProfileData);
 
 
 
@@ -40,24 +41,50 @@ function Create({animate}) {
 
         // post request api call on backend with data UserData;
         try {
-            // const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/Register`, 
-            const response = await axios.post(`${import.meta.env.VITE_MYBACKENDURL}/user/Register`, 
-                
-                UserData);
+            const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/Register`,
+                UserData, {
+                withCredentials: true //because in backend token stored inside cookies that's why we use this 
+            })
+
+            // const response = await axios.post(`${import.meta.env.VITE_MYBACKENDURL}/user/Register`,
+
+            //     UserData,{
+            //         withCredentials:true //because in backend token stored inside cookies that's why we use this 
+            //     });
+
             if (response.status === 201) {//means everything is ok 
                 const data = response.data;
 
                 //set the data in context api and token in our local storage 
                 setuserdata(data.user);
+                setLoggedIn(true);
 
-                setToken(data.token);
 
-                navigate('/');
+                toast.success("Account created successfully! Welcome aboard 🎉", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    onClose: () => {
+                        navigate("/")
+                    },
+                    draggable: true,
+                    theme: "colored",
+                });
 
             }
 
         } catch (error) {
-            console.log(error);
+            toast.error(
+                error?.response?.data?.message ||
+                "Account creation failed. Please try again.",
+                {
+                    position: "top-right",
+                    autoClose: 3000,
+                    theme: "colored",
+                }
+            );
         }
 
 
@@ -73,37 +100,37 @@ function Create({animate}) {
 
 
     return (<motion.div className='formcontainer box-border relative dark:text-white   mt-[3%] left-[30%]'
-         animate={{
-             opacity:[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,0.9,1]
-         }}
+        animate={{
+            opacity: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.9, 1]
+        }}
 
-          transition={{
-         delay:0.1,
-         duration:1.4,
-          
-       }}
-        { ...(animate && {
-        drag:true,
-         dragConstraints:{
-        left: 0,
-        right: 400,
-        bottom: 0,
-        top: 100
-    },
+        transition={{
+            delay: 0.1,
+            duration: 1.4,
 
-        whileDrag:{
-            scale: 0.8
-        },
+        }}
+        {...(animate && {
+            drag: true,
+            dragConstraints: {
+                left: 0,
+                right: 400,
+                bottom: 0,
+                top: 100
+            },
 
-
-        dragElastic:2,
-        dragTransition:{
-            bounceStiffness: 5,
+            whileDrag: {
+                scale: 0.8
+            },
 
 
-        },
+            dragElastic: 2,
+            dragTransition: {
+                bounceStiffness: 5,
 
-         } )}
+
+            },
+
+        })}
     >
         <h1 className='text-4xl mb-4 font-mono  text-[#90e027] dark:text-red-700'>Create Your Account</h1>
         <form onSubmit={(e) => {

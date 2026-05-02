@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import {ProfileData} from '../context/ProfileContext';
 
-const ProfileShow = ({ firstname, lastname, MobileNo, email,setshowProfile }) => {
+const ProfileShow = ({ firstname, lastname, MobileNo, email,setshowProfile}) => {
 
 
     const navigate=useNavigate();
@@ -11,10 +11,10 @@ const ProfileShow = ({ firstname, lastname, MobileNo, email,setshowProfile }) =>
     const logouthander = async () => {
       //call our server profile endpoint 
        try{
-      const response=await axios.get(`${import.meta.env.VITE_BASE_URL}/user/logout`,{withCredentials:true});
+      const response=await axios.get(`${import.meta.env.VITE_BASE_URL}/user/logout`,{withCredentials:true});//cookies sent automatically 
       
           if(response.status===200){
-              localStorage.removeItem("token");
+          
               setshowProfile(false);//now next time when we logged in then initially not show the profile data only rounded img show 
                setLoggedIn(false);
                navigate('/Login')

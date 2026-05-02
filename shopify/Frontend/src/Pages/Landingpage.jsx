@@ -5,7 +5,7 @@ import FAQ from '../Component/FAQ';
 import Footer from '../Component/Footer';
 import ErrorBoundary from '../Component/ErrorBoundary';
 import Partner from '../Component/Partner';
-
+import { motion } from 'motion/react'
 function Landingpage() {
 
    
@@ -25,7 +25,7 @@ function Landingpage() {
 
             <div className='mt-12 flex '>
                 <video className='w-screen h-auto  object-contain mr-4 -ml-2 ' autoPlay muted loop playsInline preload="metadata" >
-                    <source src="https://www.shutterstock.com/shutterstock/videos/1092222145/preview/stock-footage--k-fps-green-screen-animation-of-products-related-to-e-commerce-falling-wearing-belt-shoes.webm" />
+                    <source src="https://public-assets.content-platform.envatousercontent.com/835386a6-aad3-43aa-b584-410baa460518/84254984-5555-48c7-b58f-d00167a24a2e/835386a6-aad3-43aa-b584-410baa460518/preview_540p_crf26_lower_quality.mp4" />
                 </video>
             </div>
 
@@ -34,7 +34,20 @@ function Landingpage() {
             </ErrorBoundary>
 
 
-            <h1 className='head text-4xl mt-16  mx-[28rem] mb-5 text-[#27E0B3]'>Our Partners</h1>
+            <motion.h1 
+             initial={{
+             opacity:0,
+             scale:0.9
+          }}
+
+           whileInView={{
+             scale:1,
+             opacity:1,
+           }}
+            viewport={{once:true}}
+            
+             transition={{duration:0.8,ease:"easeOut"}}
+            className='head text-4xl mt-16  mx-[28rem] mb-5 text-[#27E0B3]'>Our Partners</motion.h1>
 
             <div className=' cards w-full overflow-hidden mb-1'>
                 <ErrorBoundary>
