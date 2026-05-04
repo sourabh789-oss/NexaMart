@@ -41,7 +41,7 @@ const Payment = () => {
         try {
             const usdToInrRate = 83; // Approximate USD to INR conversion rate (update as needed)
             const amountInInr = product.price * usdToInrRate;//for convert the amount of dollar into Indian rupey 
-            const { data } = await axios.post(`${import.meta.env.VITE_MYBACKENDURL}/user/create-order`, {
+            const { data } = await axios.post(`${import.meta.env.VITE_BASE_URL}/user/create-order`, {
                 amount: Math.round(amountInInr * 100), // Convert to paise
             }, {
               withCredentials:true 

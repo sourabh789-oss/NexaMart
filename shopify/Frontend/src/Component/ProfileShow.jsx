@@ -17,6 +17,7 @@ const ProfileShow = ({ firstname, lastname, MobileNo, email,setshowProfile}) => 
           
               setshowProfile(false);//now next time when we logged in then initially not show the profile data only rounded img show 
                setLoggedIn(false);
+               
                navigate('/Login')
           }
        
@@ -40,7 +41,7 @@ const ProfileShow = ({ firstname, lastname, MobileNo, email,setshowProfile}) => 
         <div className='mt-10'>
             <button onClick={() => {
                 logouthander()
-            }} className=' mx-auto px-3 text-white py-2 font-bold bg-[#27E0B3]'>Logout</button>
+            }} className=' mx-auto px-3 text-white py-2 font-bold cursor-pointer bg-[#27E0B3]'>Logout</button>
         </div>
     </div>
     )

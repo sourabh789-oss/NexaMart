@@ -1,13 +1,11 @@
-import React, { createContext, useEffect, useState } from 'react'
-import axios from 'axios';//for check profile checkpoint 
+import React, { createContext, useCallback, useEffect, useState } from 'react'
+import axios from 'axios';
 import { useTheme } from 'next-themes';
-import { useProfile } from '@/hooks/userProfile';
 
 export const ProfileData = createContext();
 
 const ProfileContext = ({ children }) => {
   const [Accountcreate, setAccountcreate] = useState(false);
-
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [firstname, setfirstname] = useState("");
   const [lastname, setlastname] = useState("");
@@ -17,67 +15,61 @@ const ProfileContext = ({ children }) => {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [hasVerified, setHasVerified] = useState(false);
 
-
-
-  // expose hasVerified so route guards can wait before redirecting
-  const verifyUser = async () => {
-    if (hasVerified) return;
+  // Single function to fetch profile from cookie — called on mount AND after login/register
+  const verifyUser = useCallback(async () => {
     try {
-      console.log("runs profile hooks");
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/user/profile`,
-        { withCredentials: true } // Sends cookie
+        { withCredentials: true }
       );
 
       if (response.status === 200) {
-
         setfirstname(response.data.fullname?.firstname || "");
         setlastname(response.data.fullname?.Lastname || "");
         setemail(response.data.email || "");
         setMobileNo(response.data.Phoneno || "");
         setAccountcreate(true);
         setLoggedIn(true);
-
       }
     } catch (error) {
-      // Cookie invalid or expired
-
+      // Cookie invalid or expired — clear everything
       setLoggedIn(false);
       setfirstname("");
       setlastname("");
       setemail("");
       setMobileNo(null);
       setAccountcreate(false);
-
     } finally {
       setHasVerified(true);
     }
-  };
+  }, []);
 
+  // Run once on mount to restore session from cookie
   useEffect(() => {
-    // On component mount, check if user is authenticated via cookie
-
-
     verifyUser();
-  }, []); // Run once immediately on mount
+  }, []);
 
-
-
-
-
-
-
-  //intially theme system default then toggle theme on user interaction 
+  // Theme sync
   useEffect(() => {
     setDark((resolvedTheme || theme) === "dark");
-  }, [theme, resolvedTheme])
-
+  }, [theme, resolvedTheme]);
 
   return (
-    <ProfileData.Provider value={{ Accountcreate, setAccountcreate, MobileNo, setMobileNo, isLoggedIn, setLoggedIn, firstname, setfirstname, lastname, setlastname, email, setemail, isdark, setDark, setTheme, theme, hasVerified,verifyUser }}>
+    <ProfileData.Provider value={{
+      Accountcreate, setAccountcreate,
+      MobileNo, setMobileNo,
+      isLoggedIn, setLoggedIn,
+      firstname, setfirstname,
+      lastname, setlastname,
+      email, setemail,
+      isdark, setDark,
+      setTheme, theme,
+      hasVerified,
+      verifyUser,
+    }}>
       {children}
     </ProfileData.Provider>
-  )
-}
+  );
+};
 
-export default ProfileContext
+export default ProfileContext;

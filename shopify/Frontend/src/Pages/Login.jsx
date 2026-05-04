@@ -14,7 +14,7 @@ function Login({ animate }) {
   const [hidepassword, sethidepassword] = useState(true);
   const { userdata, setuserdata } = useContext(UserdataContext);
   const [login, setLogin] = useState("");
-  const { setAccountcreate, setToken, setLoggedIn,verifyUser ,setfirstname, setlastname, setemail } = useContext(ProfileData);
+  const { setAccountcreate,  setLoggedIn,verifyUser ,setfirstname, setlastname, setemail } = useContext(ProfileData);
   const navigate = useNavigate();
 
   const passwordVisibility = () => {
