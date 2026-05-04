@@ -40,6 +40,7 @@ const ProfileContext = ({ children }) => {
           setMobileNo(response.data.Phoneno || "");
           setAccountcreate(true);
           setLoggedIn(true);
+          setHasVerified(true);
         }
       } catch (error) {
         // Cookie invalid or expired
@@ -50,9 +51,8 @@ const ProfileContext = ({ children }) => {
         setemail("");
         setMobileNo(null);
         setAccountcreate(false);
-      } finally {
-        setHasVerified(true);
-      }
+        setHasVerified(false);
+      } 
     };
 
     verifyUser();

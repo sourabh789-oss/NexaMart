@@ -18,7 +18,7 @@ function Navbar() {
   const Navbarref = useRef(null);
 
   //profile data related work here 
-  const { isLoggedIn, firstname, lastname, email, MobileNo } = useContext(ProfileData);
+  const { isLoggedIn, firstname, lastname, email, MobileNo,hasVerified } = useContext(ProfileData);
   const [showProfile, setshowProfile] = useState(false);//initially we not show our profile until user clicks 
 
 
@@ -110,7 +110,7 @@ function Navbar() {
           <ThemeToggleButton />
           </ErrorBoundary>
         </div>
-        {(isLoggedIn || localStorage.getItem("token")) ? <div className="profilecontainer  relative w-12 h-12 shadow-sm ">
+        {(isLoggedIn && hasVerified) ? <div className="profilecontainer  relative w-12 h-12 shadow-sm ">
           <div className='flex flex-col'>
 
             <img onClick={() => {
