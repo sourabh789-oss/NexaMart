@@ -19,7 +19,7 @@ function Create({ animate }) {
 
     const { userdata, setuserdata } = useContext(UserdataContext);//extact our provider value from userContext userdata,setuserdata
 
-    const { setLoggedIn } = useContext(ProfileData);
+    const { setLoggedIn,verifyUser } = useContext(ProfileData);
 
 
 
@@ -57,8 +57,8 @@ function Create({ animate }) {
 
                 //set the data in context api and token in our local storage 
                 setuserdata(data.user);
-                setLoggedIn(true);
-
+                // setLoggedIn(true);
+                await verifyUser();
 
                 toast.success("Account created successfully! Welcome aboard 🎉", {
                     position: "top-right",

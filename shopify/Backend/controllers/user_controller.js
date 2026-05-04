@@ -41,6 +41,12 @@ module.exports.registerUser = async (req, res, next) => {
 
     //now create the token 
     const token = user.generateAuthToken();
+    res.cookie('token', token, {
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    sameSite: "None",
+    secure: true
+});
 
     return res.status(201).json({user });//after successfully create the account it return response token and user 
 
@@ -108,7 +114,7 @@ module.exports.logoutUser = async (req, res, next) => {
 
         res.clearCookie("token", {//for our backend server is on another site and frontend server is on other side 
             httpOnly: true,
-            samesite: "none",
+            sameSite: "None",
             secure: true
         });
 

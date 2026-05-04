@@ -14,7 +14,7 @@ function Login({ animate }) {
   const [hidepassword, sethidepassword] = useState(true);
   const { userdata, setuserdata } = useContext(UserdataContext);
   const [login, setLogin] = useState("");
-  const { setAccountcreate, setToken, setLoggedIn, setfirstname, setlastname, setemail } = useContext(ProfileData);
+  const { setAccountcreate, setToken, setLoggedIn,verifyUser ,setfirstname, setlastname, setemail } = useContext(ProfileData);
   const navigate = useNavigate();
 
   const passwordVisibility = () => {
@@ -45,9 +45,9 @@ function Login({ animate }) {
         const data = response.data;
 
         setuserdata(data.user)
-        
-        setAccountcreate(true);
-        setLoggedIn(true);
+         await verifyUser();
+        // setAccountcreate(true);
+        // setLoggedIn(true);
         toast.success("Login successful! Welcome back.", {
           position: "top-right",
           autoClose: 2000,

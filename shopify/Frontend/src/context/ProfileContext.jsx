@@ -20,42 +20,43 @@ const ProfileContext = ({ children }) => {
 
 
   // expose hasVerified so route guards can wait before redirecting
+  const verifyUser = async () => {
+    if (hasVerified) return;
+    try {
+      console.log("runs profile hooks");
+      const response = await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/user/profile`,
+        { withCredentials: true } // Sends cookie
+      );
+
+      if (response.status === 200) {
+
+        setfirstname(response.data.fullname?.firstname || "");
+        setlastname(response.data.fullname?.Lastname || "");
+        setemail(response.data.email || "");
+        setMobileNo(response.data.Phoneno || "");
+        setAccountcreate(true);
+        setLoggedIn(true);
+
+      }
+    } catch (error) {
+      // Cookie invalid or expired
+
+      setLoggedIn(false);
+      setfirstname("");
+      setlastname("");
+      setemail("");
+      setMobileNo(null);
+      setAccountcreate(false);
+
+    } finally {
+      setHasVerified(true);
+    }
+  };
 
   useEffect(() => {
     // On component mount, check if user is authenticated via cookie
-    const verifyUser = async () => {
-      if (hasVerified) return;
-      try {
-         console.log("runs profile hooks");
-        const response = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/user/profile`,
-          { withCredentials: true } // Sends cookie
-        );
 
-        if (response.status === 200) {
-
-          setfirstname(response.data.fullname?.firstname || "");
-          setlastname(response.data.fullname?.Lastname || "");
-          setemail(response.data.email || "");
-          setMobileNo(response.data.Phoneno || "");
-          setAccountcreate(true);
-          setLoggedIn(true);
-         
-        }
-      } catch (error) {
-        // Cookie invalid or expired
-
-        setLoggedIn(false);
-        setfirstname("");
-        setlastname("");
-        setemail("");
-        setMobileNo(null);
-        setAccountcreate(false);
-      
-      } finally{
-         setHasVerified(true);
-      }
-    };
 
     verifyUser();
   }, []); // Run once immediately on mount
@@ -73,7 +74,7 @@ const ProfileContext = ({ children }) => {
 
 
   return (
-    <ProfileData.Provider value={{ Accountcreate, setAccountcreate, MobileNo, setMobileNo, isLoggedIn, setLoggedIn, firstname, setfirstname, lastname, setlastname, email, setemail, isdark, setDark, setTheme, theme, hasVerified }}>
+    <ProfileData.Provider value={{ Accountcreate, setAccountcreate, MobileNo, setMobileNo, isLoggedIn, setLoggedIn, firstname, setfirstname, lastname, setlastname, email, setemail, isdark, setDark, setTheme, theme, hasVerified,verifyUser }}>
       {children}
     </ProfileData.Provider>
   )
