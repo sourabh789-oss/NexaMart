@@ -7,15 +7,15 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   //for connection on deployment 
-  // server: {
-  //   proxy: {
-  //     '/user': {
-  //       target: process.env.VITE_BASE_URL,
-  //       changeOrigin: true,
-  //       secure: true
-  //     }
-  //   }
-  // },
+  server: {
+    proxy: {
+      '/user': {
+        target: process.env.VITE_BASE_URL,
+        changeOrigin: true,
+        secure: true
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src')
