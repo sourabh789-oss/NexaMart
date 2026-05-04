@@ -13,8 +13,7 @@ function UserProtectWrapper({ children }) {
     }
   }, [isLoggedIn, hasVerified]);
 
-  // Still verifying — render nothing (or a loader) to avoid flash redirect
-  if (!hasVerified) return  <div>Loading...</div>;;
+  
 
   return <>{children}</>;
 }
