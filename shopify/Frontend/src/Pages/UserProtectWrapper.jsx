@@ -13,7 +13,9 @@ function UserProtectWrapper({ children }) {
     }
   }, [isLoggedIn, hasVerified]);
 
-  
+ if(!hasVerified || !isLoggedIn){
+  return <div>Loading....</div>
+ }  
 
   return <>{children}</>;
 }

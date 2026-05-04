@@ -45,7 +45,7 @@ function Login({ animate }) {
         const data = response.data;
 
         setuserdata(data.user)
-
+        
         setAccountcreate(true);
         setLoggedIn(true);
         toast.success("Login successful! Welcome back.", {
